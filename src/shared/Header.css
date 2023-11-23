@@ -1,0 +1,11 @@
+.active-link {
+    /* background-color:  #32CD32!important; */
+    color: rgb(255, 255, 255) !important;
+    /* border: 3px 3px 0 0  solid  white !important; */
+    border-top: 1px solid white !important; /* Specify the top border style, width, and color */
+      border-bottom: 1px solid white !important;
+      border-radius: 0;
+    
+    /* Set your desired blue color here */
+    /* Add other styles if needed */
+  }
