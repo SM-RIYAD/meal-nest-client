@@ -4,7 +4,7 @@ const PageTitle = ({title}) => {
     return (
         <Helmet>
       
-        <title>JobSphere | {title}</title>
+        <title>Meal Nest | {title}</title>
     
     </Helmet>
     );
