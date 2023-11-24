@@ -5,10 +5,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../providers/AuthProvider";
 import PageTitle from "../../Components/PageTitle";
 import LoginBanner from "./LoginBanner";
-
+import { useForm } from "react-hook-form";
 // import AuthProvider, { AuthContext } from "../../providers/AuthProvider";
 // import Header from "../Home/Header/Header";
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const location = useLocation();
   const navigate = useNavigate();
   const errorToast = (loginError) =>
@@ -20,13 +26,12 @@ const Login = () => {
 
 const { signIn,googleSignIn,theme }=useContext(AuthContext);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    let email = e.target.email.value;
+  const handleLogin = (data) => {
+    // e.preventDefault();
 
-    let password = e.target.password.value;
-    let test = e.target.test.value;
+    const password = data.password;
 
+    const email = data.email;
     if(email.length===0 || password.length===0){
 
      
@@ -84,17 +89,23 @@ navigate(location?.state ? location.state : '/', { state: { from: location.pathn
             />
           </div>
           <div className=" border-2 border-white card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleLogin} className="card-body">
+            <form onSubmit={handleSubmit(handleLogin)} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
-                <input
+                {/* <input
                   type="email"
                   name="email"
                   placeholder="email"
                   className="input input-bordered"
              
+                /> */}  <input
+                  type="email"
+                  {...register("email", { required: true })}
+                  name="email"
+                  placeholder="email"
+                  className="input input-bordered"
                 />
                     <input
                   type="text"
@@ -108,12 +119,19 @@ navigate(location?.state ? location.state : '/', { state: { from: location.pathn
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input
+                {/* <input
                   type="password"
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
                   
+                /> */}     <input
+                  type="password"
+                  {...register("password", {
+                    required: true,
+                  })}
+                  placeholder="password"
+                  className="input input-bordered"
                 />
                 <label className="flex justify-start mt-2">
                   {" "}

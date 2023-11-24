@@ -6,8 +6,8 @@ import "./Header.css";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const { pathname } = useLocation();
-  console.log("this is from header",pathname)
-  const navigate =useNavigate()
+  console.log("this is from header", pathname);
+  const navigate = useNavigate();
   console.log("photo url", user?.photoURL);
   const handleLogout = () => {
     logOut()
@@ -32,7 +32,7 @@ const Header = () => {
           style={{ style: "" }}
           to="/meals"
         >
-        Meals
+          Meals
         </Link>
       </li>
 
@@ -54,7 +54,7 @@ const Header = () => {
           </Link>
         </li>
       )}
-        {user?.displayName && (
+      {user?.displayName && (
         <li className={`${user ? "pt-5" : "pt-5"} `}>
           <Link
             className={`${pathname === "/addajob" ? "active-link" : ""}`}
@@ -64,7 +64,7 @@ const Header = () => {
           </Link>
         </li>
       )}
-        {user?.displayName && (
+      {user?.displayName && (
         <li className={`${user ? "pt-5" : "pt-5"} `}>
           <Link
             className={`${pathname === "/appliedjobs" ? "active-link" : ""}`}
@@ -95,40 +95,77 @@ const Header = () => {
   const endlinks = (
     <>
       <li>
-        {user ? (
-          <div className="  lg:ms-0 uppercase  flex items-center flex-col mt-6 gap-2  ">
-            <div className="rounded-full  tooltip flex gap-5"   >
-              <div className="w-12 rounded-full  tooltip"  data-tip={user?.displayName}   >
-                <img className="rounded-full" src={user?.photoURL} />
-              </div>
-              <btn  onClick={handleLogout} className={`border-0 ${pathname === "/" ? "" : "hidden"}  btn btn-error btn-outline`}>
-            Logout
-          </btn>
-            </div>
-            {/* <p className="font-bold  ">{user.displayName}</p> */}
-          </div>
-        ) :  
-        
-        <Link
-        className={`${pathname === "/login" ? "active-link" : ""}`}
-        to="/login"
-      >
-        <p className="border-0  font-bold">Log in</p>
-      </Link>
-      // <div>JoinUS</div>
+        {
+          user ? (
+            // <div className="  lg:ms-0 uppercase  flex items-center flex-col mt-6 gap-2  ">
+            //   <div className="rounded-full  tooltip flex gap-5">
+            //     <div
+            //       className="w-12 rounded-full  tooltip"
+            //       data-tip={user?.displayName}
+            //     >
+            //       <img className="rounded-full" src={user?.photoURL} />
+            //     </div>
+            //     <btn
+            //       onClick={handleLogout}
+            //       className={`border-0 ${
+            //         pathname === "/" ? "" : "hidden"
+            //       }  btn btn-error btn-outline`}
+            //     >
+            //       Logout
+            //     </btn>
+            //   </div>
+            //   {/* <p className="font-bold  ">{user.displayName}</p> */}
+            // </div>
+            <details>
+              <summary>
 
-      
-      
-      }
+                   <div
+                  className="w-12 rounded-full  tooltip"
+               
+                >
+                  <img className="rounded-full" src={user?.photoURL} />
+                </div>
+
+                
+              </summary>
+              <ul className="p-2 bg-opacity-70">
+                <li>
+                  <a>{user?.displayName}</a>
+                </li>
+                <li>
+                  <a>Dashboard</a>
+                </li>
+                <li>
+                    <btn
+                  onClick={handleLogout}
+                  className={`border-0 ${
+                    pathname === "/" ? "" : "hidden"
+                  }  btn btn-error btn-outline`}
+                >
+                  Logout
+                </btn>
+                </li>
+              </ul>
+            </details>
+          ) : (
+            <Link
+              className={`${pathname === "/login" ? "active-link" : ""}`}
+              to="/login"
+            >
+              <p className="border-0  font-bold">Log in</p>
+            </Link>
+          )
+          // <div>JoinUS</div>
+        }
       </li>
     </>
   );
   return (
     <div className="   ">
-      <div className="navbar text-red-400 font-bold absolute z-10 bg-opacity-30 bg-black   px-20   ">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+      <div className="navbar text-red-400 font-bold absolute z-50 bg-opacity-30 bg-black   px-20   ">
+        <div className="navbar-start ">
+          <div className="dropdown ">
+            <label tabIndex={0} className="btn btn-ghost z-50  lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -159,7 +196,7 @@ const Header = () => {
                 src={` ${"https://i.ibb.co/sJcZxsz/jobspherenew-removebg-preview.png"}`}
               />
             </div> */}
-           Meal Nest
+            Meal Nest
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">

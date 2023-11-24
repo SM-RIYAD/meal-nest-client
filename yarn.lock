@@ -892,6 +892,23 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.11.0.tgz#e0e45ac3fff9d8a126916f166809825537e9f955"
   integrity sha512-BHdhcWgeiudl91HvVa2wxqZjSHbheSgIiDvxrF1VjFzBzpTtuDPkOdOi3Iqvc08kXtFkLjhbS+ML9aM8mJS+wQ==
 
+"@smastrom/react-rating@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@smastrom/react-rating/-/react-rating-1.3.2.tgz#bbef1d585abd00a8a8838a7fd281d531525f183b"
+  integrity sha512-Rp3T7modHgJAnAwZxM5VQnkLPBp71/S2vNmp/eP7rVcZWQjx1F+4HfycdACAUbZVl8yV6TszyzUYXr2VVLgN6A==
+
+"@tanstack/query-core@5.8.6":
+  version "5.8.6"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.8.6.tgz#f12ee4effa3acd6eda5e02410aef16c758dcb421"
+  integrity sha512-QLzMH6E5hZ0cIlvc0rdEGWajU17CZEZqaa1dEdfI16d8yjF2cIK+Zu+JpdLmF5MURCtQi5jVh0V1hMPjAC2IvQ==
+
+"@tanstack/react-query@^5.8.6":
+  version "5.8.6"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.8.6.tgz#0ffef2a933e3212eea895548c4b90c9ebccfd2b5"
+  integrity sha512-pgboe7A7H2o7Yt0E68u40QZDspXPJi4C0pfri93f0n+JWxmfymAbVuctmhU5F3JJy/++mQZhNSUv9kohybPVzw==
+  dependencies:
+    "@tanstack/query-core" "5.8.6"
+
 "@types/babel__core@^7.20.3":
   version "7.20.3"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.20.3.tgz#d5625a50b6f18244425a1359a858c73d70340778"
@@ -2839,6 +2856,11 @@ react-helmet@^6.1.0:
     prop-types "^15.7.2"
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
+
+react-hook-form@^7.48.2:
+  version "7.48.2"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.48.2.tgz#01150354d2be61412ff56a030b62a119283b9935"
+  integrity sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==
 
 react-is@^16.13.1:
   version "16.13.1"

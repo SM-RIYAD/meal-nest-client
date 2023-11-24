@@ -1,20 +1,26 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../providers/AuthProvider";
 import PageTitle from "../../Components/PageTitle";
 import RegisterBanner from "./RegisterBanner";
-
+import { useForm } from "react-hook-form";
 
 // import { AuthContext } from "../providers/AuthProvider";
 
-
 const Register = () => {
-//   const { createUser, updateUser,logOut } = useContext(AuthContext);
-
-
-const  { createUser, updateUser,logOut } =useContext(AuthContext)
+  //   const { createUser, updateUser,logOut } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const { createUser, updateUser, logOut, googleSignIn } =
+    useContext(AuthContext);
   const errorToast = (regError) =>
     toast.error(regError, { position: "bottom-center" });
 
@@ -22,14 +28,31 @@ const  { createUser, updateUser,logOut } =useContext(AuthContext)
     toast.success(successmsg, { position: "bottom-center" });
 
   const [regError, SetRegError] = useState("");
+  const handleGoogleSignin = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log("this is logged in user", result.user);
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    console.log("name in reg ", name);
-    const password = e.target.password.value;
-    const photo = e.target.photo.value;
-    const email = e.target.email.value;
+        SuccessToast("Successfully logged in !");
+
+        // <Navigate state={location.pathname} to={location?.state ? location.state : '/'}></Navigate>
+        navigate(location?.state ? location.state : "/", {
+          state: { from: location.pathname },
+        });
+      })
+      .catch((error) => {
+        console.error("this is ", error);
+
+        errorToast(error.message);
+      });
+  };
+  const handleRegister = (data) => {
+    // e.preventDefault();
+    const name = data.name;
+    console.log("data in reg ", data);
+    const password = data.password;
+    const photo = data.photoURL;
+    const email = data.email;
 
     if (password.length < 6) {
       errorToast("Password should be of at least 6 digits");
@@ -45,10 +68,12 @@ const  { createUser, updateUser,logOut } =useContext(AuthContext)
         .then((result) => {
           console.log(result.user);
           console.log("user created");
-          updateUser(name,photo).then((result) => {
-              console.log("profile updated",result);
+          updateUser(name, photo)
+            .then((result) => {
+              console.log("profile updated", result);
               SuccessToast("user Created!");
               logOut();
+              reset();
               // ...
             })
             .catch((error) => {
@@ -65,7 +90,7 @@ const  { createUser, updateUser,logOut } =useContext(AuthContext)
   };
   return (
     <div>
-<PageTitle title={"Register"} ></PageTitle>
+      <PageTitle title={"Register"}></PageTitle>
       <ToastContainer />
       <RegisterBanner></RegisterBanner>
       <div className="hero min-h-screen ">
@@ -78,17 +103,24 @@ const  { createUser, updateUser,logOut } =useContext(AuthContext)
             />
           </div>
           <div className="border-2 border-white  card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleRegister} className="card-body">
+            <form onSubmit={handleSubmit(handleRegister)} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
-                <input
+                {/* <input
                   type="email"
                   name="email"
                   placeholder="email"
                   className="input input-bordered"
                   required
+                /> */}
+                <input
+                  type="email"
+                  {...register("email", { required: true })}
+                  name="email"
+                  placeholder="email"
+                  className="input input-bordered"
                 />
               </div>
 
@@ -96,12 +128,18 @@ const  { createUser, updateUser,logOut } =useContext(AuthContext)
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
-                <input
+                {/* <input
                   type="text"
                   name="name"
                   placeholder="Enter your name"
                   className="input input-bordered"
                   required
+                /> */}{" "}
+                <input
+                  type="text"
+                  {...register("name", { required: true })}
+                  placeholder="Name"
+                  className="input input-bordered"
                 />
               </div>
 
@@ -109,12 +147,18 @@ const  { createUser, updateUser,logOut } =useContext(AuthContext)
                 <label className="label">
                   <span className="label-text">Photo Url</span>
                 </label>
-                <input
+                {/* <input
                   type="photo"
                   name="photo"
                   placeholder="enter photo url"
                   className="input input-bordered"
                   required
+                /> */}
+                <input
+                  type="text"
+                  {...register("photoURL", { required: true })}
+                  placeholder="Photo URL"
+                  className="input input-bordered"
                 />
               </div>
 
@@ -122,12 +166,20 @@ const  { createUser, updateUser,logOut } =useContext(AuthContext)
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input
+                {/* <input
                   type="password"
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
                   required
+                /> */}{" "}
+                <input
+                  type="password"
+                  {...register("password", {
+                    required: true,
+                  })}
+                  placeholder="password"
+                  className="input input-bordered"
                 />
                 <label className="flex mt-2 justify-start">
                   {" "}
@@ -145,6 +197,14 @@ const  { createUser, updateUser,logOut } =useContext(AuthContext)
                 </button>
               </div>
             </form>
+            <div className="flex justify-center w-full">
+              <button
+                onClick={handleGoogleSignin}
+                className=" lg:w-[320px] w-[220px] btn mt-1 mb-5  bg-emerald-500 btn-primary border-0 text-white"
+              >
+                Continue With Google
+              </button>
+            </div>
           </div>
         </div>
       </div>
