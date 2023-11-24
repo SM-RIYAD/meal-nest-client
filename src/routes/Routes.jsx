@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import Meals from "../pages/Meals/Meals";
 import UpcomingMeals from "../pages/UpcomingMeals/UpcomingMeals";
 import Register from "../pages/Register/Register";
+import Dashboard from "../layouts/DashBoard";
 
 
 
@@ -76,7 +77,19 @@ const router = createBrowserRouter([
                 
             // },
         ]
-    }    
+    }  , {
+        path: 'dashboard',
+        element: <Dashboard/>,
+        children: [
+          // normal user routes
+        //   {
+        //     path: 'userHome',
+        //     element: <UserHome></UserHome>
+        //   }
+        
+  
+        ]
+      }  
 ]);
 
 export default router;

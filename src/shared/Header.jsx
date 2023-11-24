@@ -133,7 +133,10 @@ const Header = () => {
                   <a>{user?.displayName}</a>
                 </li>
                 <li>
+                  <Link to={"/dashboard"}> 
                   <a>Dashboard</a>
+                  </Link>
+                
                 </li>
                 <li>
                     <btn

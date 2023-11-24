@@ -6,10 +6,12 @@ import { AuthContext } from "../../providers/AuthProvider";
 import PageTitle from "../../Components/PageTitle";
 import RegisterBanner from "./RegisterBanner";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 // import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
+  const axiosPublic= useAxiosPublic();
   //   const { createUser, updateUser,logOut } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,6 +36,18 @@ const Register = () => {
         console.log("this is logged in user", result.user);
 
         SuccessToast("Successfully logged in !");
+        console.log(result.user);
+        const userInfo = {
+            email: result.user?.email,
+            name: result.user?.displayName,
+            badge:'bronze',
+            role:'admin'
+        }
+        axiosPublic.post('/users', userInfo)
+        .then(res =>{
+            console.log(res.data);
+            // navigate('/');
+        })
 
         // <Navigate state={location.pathname} to={location?.state ? location.state : '/'}></Navigate>
         navigate(location?.state ? location.state : "/", {
@@ -72,8 +86,35 @@ const Register = () => {
             .then((result) => {
               console.log("profile updated", result);
               SuccessToast("user Created!");
+              
               logOut();
+
+
+
+
               reset();
+
+              const userInfo = {
+                email: email,
+                name: name,
+                badge:'bronze',
+                role:'normal'
+            }
+            axiosPublic.post('/users', userInfo)
+            .then(res =>{
+                console.log(res.data);
+                // navigate('/');
+            })
+    
+
+
+
+
+
+
+
+
+
               // ...
             })
             .catch((error) => {

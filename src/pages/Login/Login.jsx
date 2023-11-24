@@ -6,9 +6,12 @@ import { AuthContext } from "../../providers/AuthProvider";
 import PageTitle from "../../Components/PageTitle";
 import LoginBanner from "./LoginBanner";
 import { useForm } from "react-hook-form";
+
+import axios from "axios";
 // import AuthProvider, { AuthContext } from "../../providers/AuthProvider";
 // import Header from "../Home/Header/Header";
 const Login = () => {
+
   const {
     register,
     handleSubmit,
@@ -55,25 +58,58 @@ const { signIn,googleSignIn,theme }=useContext(AuthContext);
       });
   };
 
-  const handleGoogleSignin=()=>{
+//   const handleGoogleSignin=()=>{
 
-    googleSignIn() .then((result) => {
-      console.log("this is logged in user",result.user);
-
-      
-      SuccessToast("Successfully logged in !");
+//     googleSignIn() .then((result) => {
+//       console.log("this is logged in user",result.user);
 
       
-      // <Navigate state={location.pathname} to={location?.state ? location.state : '/'}></Navigate>
-navigate(location?.state ? location.state : '/', { state: { from: location.pathname } });
-    })
-    .catch((error) => {
-      console.error("this is ", error);
+//       SuccessToast("Successfully logged in !");
 
-      errorToast(error.message);
-    });
+      
+//       // <Navigate state={location.pathname} to={location?.state ? location.state : '/'}></Navigate>
+// navigate(location?.state ? location.state : '/', { state: { from: location.pathname } });
+//     })
+//     .catch((error) => {
+//       console.error("this is ", error);
 
-  }
+//       errorToast(error.message);
+//     });
+
+//   }
+
+
+  const handleGoogleSignin = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log("this is logged in user", result.user);
+
+        SuccessToast("Successfully logged in !");
+        console.log("this is in login google",result.user);
+        const userInfo = {
+            email: result.user?.email,
+            name: result.user?.displayName,
+            badge:'bronze',
+            role:'normal'
+        }
+        console.log("this is user info in login",userInfo);
+        axios.post('http://localhost:5000/users', userInfo)
+        .then(res =>{
+            console.log(res.data);
+            // navigate('/');
+        })
+
+        // <Navigate state={location.pathname} to={location?.state ? location.state : '/'}></Navigate>
+        navigate(location?.state ? location.state : "/", {
+          state: { from: location.pathname },
+        });
+      })
+      .catch((error) => {
+        console.error("this is error in login ", error);
+
+        errorToast(error.message);
+      });
+  };
   return (
     <div  className="">
    <PageTitle title={"Login"}></PageTitle>
