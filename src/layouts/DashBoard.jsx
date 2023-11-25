@@ -10,7 +10,7 @@ const Dashboard = () => {
     // TODO: get isAdmin value from the database
     const [isAdmin] = useAdmin();
     // const isAdmin=false;
-
+ console.log("is admin or not",isAdmin)
     return (
         <div className="flex mx-auto max-w-6xl">
             {/* dashboard side bar */}
