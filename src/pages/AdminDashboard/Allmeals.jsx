@@ -2,13 +2,64 @@ import React from "react";
 import useMeals from "../../hooks/useMeals";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 const Allmeals = () => {
   const [meals, loading, refetch] = useMeals();
+
+//   const axiosPublic = useAxiosPublic();
+
+//   const {data: meals = [], isPending: loading, refetch} = useQuery({
+//     queryKey: ['meals'], 
+   
+//     queryFn: async() =>{
+//         const res = await axiosPublic.get('/meals');
+//         return res.data;
+//     }
+// })
+
+
+
+
+
+
+
   const [showmeals, setShowmeals] = useState(meals);
   () => {
     setShowmeals(meals);
   },
     [meals];
+console.log("show meals",showmeals );
+console.log("meals", meals );
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/deletemeal/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Job has been deleted.", "success");
+              // const remaining = jobs.filter(job => job._id !== id);
+              // setJobs(remaining);
+
+              refetch();
+            }
+          });
+      }
+    });
+  };
   return (
     <div>
       {loading ? (
@@ -30,7 +81,7 @@ const Allmeals = () => {
                 </tr>
               </thead>
               <tbody>
-                {showmeals.map((meal) => (
+                {meals.map((meal) => (
                   <tr key={meal._id}>
                     <th>{meal.mealTitle}</th>
                     <td>{meal.likes}</td>
@@ -38,13 +89,20 @@ const Allmeals = () => {
                     <td>{meal.adminName}</td>
                     <td>{meal.adminEmail}</td>
                     <td>
-                        <Link to={`/updatemeal/${meal._id}`}>    <button className="btn btn-xs ms-1 btn-error text-white">
-                         {" "}
-                         Update{" "}
-                       </button>
-                            </Link>
-                  
-                      <button className="btn ms-1 btn-xs btn-error text-white">
+                      <Link to={`/updatemeal/${meal._id}`}>
+                        {" "}
+                        <button className="btn btn-xs ms-1 btn-error text-white">
+                          {" "}
+                          Update{" "}
+                        </button>
+                      </Link>
+
+                      <button
+                        onClick={() => {
+                          handleDelete(meal._id);
+                        }}
+                        className="btn ms-1 btn-xs btn-error text-white"
+                      >
                         {" "}
                         Delete{" "}
                       </button>
