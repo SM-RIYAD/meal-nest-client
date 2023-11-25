@@ -56,7 +56,7 @@ const handleMakeAdmin = user =>{
   <th>{user.name}</th>
   <td>{user.email}</td>
   <td>{user.badge}</td>
-  <td><button onClick={()=>{handleMakeAdmin(user)}} className='btn btn-sm'> Make admin </button></td>
+  <td><button onClick={()=>{handleMakeAdmin(user)}} className='btn btn-xs btn-error text-white'> Make admin </button></td>
 </tr>
 
  )

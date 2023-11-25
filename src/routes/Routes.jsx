@@ -14,6 +14,7 @@ import AllReviews from "../pages/AdminDashboard/AllReviews";
 import ManageUsers from "../pages/AdminDashboard/ManageUsers";
 import ServeMeal from "../pages/AdminDashboard/ServeMeal";
 import Allmeals from "../pages/AdminDashboard/Allmeals";
+import UpdateMeal from "../pages/AdminDashboard/UpdateMeal";
 
 
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
                 element: <UpcomingMeals/>, 
             
                 
+            },    {
+              path: 'updatemeal/:id',
+              element: <UpdateMeal/>,
+              loader: ({params}) => fetch(`http://localhost:5000/specificmeal/${params.id}`)
             },
             // {
             //     path: '/blogs', 
@@ -111,7 +116,7 @@ const router = createBrowserRouter([
             path: 'upcomingmeals',
             element: <UpcomingMeals/>
           },
-        
+      
         
   
         ]
