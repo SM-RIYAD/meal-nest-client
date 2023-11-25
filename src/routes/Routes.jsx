@@ -8,6 +8,12 @@ import Meals from "../pages/Meals/Meals";
 import UpcomingMeals from "../pages/UpcomingMeals/UpcomingMeals";
 import Register from "../pages/Register/Register";
 import Dashboard from "../layouts/DashBoard";
+import AdminProfile from "../pages/AdminDashboard/AdminProfile";
+import AddMeal from "../pages/AdminDashboard/AddMeal";
+import AllReviews from "../pages/AdminDashboard/AllReviews";
+import ManageUsers from "../pages/AdminDashboard/ManageUsers";
+import ServeMeal from "../pages/AdminDashboard/ServeMeal";
+import Allmeals from "../pages/AdminDashboard/Allmeals";
 
 
 
@@ -82,10 +88,30 @@ const router = createBrowserRouter([
         element: <Dashboard/>,
         children: [
           // normal user routes
-        //   {
-        //     path: 'userHome',
-        //     element: <UserHome></UserHome>
-        //   }
+          {
+            path: 'Adminprofile',
+            element: <AdminProfile/>
+          },{
+            path: 'Addmeal',
+            element: <AddMeal/>
+          },
+          {
+            path: 'Allmeals',
+            element: <Allmeals/>
+          },
+          {
+            path: 'manageusers',
+            element: <ManageUsers/>
+          },
+          {
+            path: 'servemeal',
+            element: <ServeMeal/>
+          },
+          {
+            path: 'upcomingmeals',
+            element: <UpcomingMeals/>
+          },
+        
         
   
         ]

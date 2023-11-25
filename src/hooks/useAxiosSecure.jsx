@@ -8,7 +8,7 @@ import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
     baseURL: 'http://localhost:5000/',
-    withCredentials: true
+    // withCredentials: true
 });
 // const axiosSecure = axios.create({
 //     baseURL: 'http://localhost:5000/',
