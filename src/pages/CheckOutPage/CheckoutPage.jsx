@@ -22,6 +22,7 @@ const CheckoutPage = () => {
   );
 
   const payment_price = slected_package.plan_Price;
+  const payment_badge = slected_package.plan_name;
 
   console.log("selected price: ", payment_price);
 
@@ -33,7 +34,7 @@ const CheckoutPage = () => {
         this is checkout page. {memberpackage}
         <div>
           <Elements stripe={stripePromise}>
-            <Checkoutform payment_price={payment_price} />
+            <Checkoutform payment_badge={payment_badge} payment_price={payment_price} />
           </Elements>
         </div>
       </div>
