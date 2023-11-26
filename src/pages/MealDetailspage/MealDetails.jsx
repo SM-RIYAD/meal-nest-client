@@ -2,6 +2,8 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import SharedBanner from '../../shared/SharedComponents/SharedBanner';
 import { Rating } from '@smastrom/react-rating';
+import { BiLike } from "react-icons/bi";
+import Reviews from './Reviews';
 const MealDetails = () => {
     const meal = useLoaderData();
     console.log("this is meal in details",meal)
@@ -32,13 +34,14 @@ const MealDetails = () => {
 <div className='flex gap-5'>
 
     <button className='btn btn-primary bg-red-500 text-white border-none '>Requested meal</button>
-    <button className='btn btn-primary'>Like</button>
+    <button className=' btn btn-primary bg-red-500 text-white border-none text-bold text-xl'><BiLike /></button> <p>{meal.likes}</p>
 </div>
    
 </div>
 
 
            </div>
+           <Reviews meal={meal}></Reviews>
 
 
         </div>
