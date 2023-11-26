@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import MealCard from "./MealCard";
 import useMeals from "../../hooks/useMeals";
+import { Link } from "react-router-dom";
 const Mealtab = () => {
   // const [meals, setMeals] = useState([]);
   // const [loading, setloading] = useState(false);
@@ -93,7 +94,8 @@ const Mealtab = () => {
       ) : (
         <div className="grid mt-10 gap-5 p-5  lg:p-0  grid-cols-1 lg:grid-cols-3">
           {showmeals.map((meal, idx) => (
-            <MealCard meal={meal} key={idx} />
+           
+            <MealCard meal={meal} key={meal._id} />
           ))}
         </div>
       )}

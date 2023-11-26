@@ -16,6 +16,7 @@ import ServeMeal from "../pages/AdminDashboard/ServeMeal";
 import Allmeals from "../pages/AdminDashboard/Allmeals";
 import UpdateMeal from "../pages/AdminDashboard/UpdateMeal";
 import CheckoutPage from "../pages/CheckOutPage/CheckoutPage";
+import MealDetails from "../pages/MealDetailspage/MealDetails";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,12 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/mealdetails/:id",
+        element: <MealDetails />,
+        loader: ({ params }) =>
+        fetch(`http://localhost:5000/specificmeal/${params.id}`)
       },
       {
         path: "/register",

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Rating } from '@smastrom/react-rating';
+import { Link } from 'react-router-dom';
 
 const MealCard = ({meal}) => {
     return (
@@ -16,7 +17,8 @@ const MealCard = ({meal}) => {
     />
     <p className='font-bold'>${meal.price}</p>
     <div className="card-actions justify-start">
-      <button className="btn mt-5 btn-s btn-outline text-red-400  hover:bg-red-500   hover:border-none">Meal Details</button>
+      <Link to={`mealdetails/${meal._id}`}> <button className="btn mt-5 btn-s btn-outline text-red-400  hover:bg-red-500   hover:border-none">Meal Details</button></Link>
+     
     </div>
   </div>
 </div>
