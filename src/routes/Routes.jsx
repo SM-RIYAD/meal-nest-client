@@ -18,6 +18,8 @@ import UpdateMeal from "../pages/AdminDashboard/UpdateMeal";
 import CheckoutPage from "../pages/CheckOutPage/CheckoutPage";
 import MealDetails from "../pages/MealDetailspage/MealDetails";
 import PrivateRoute from "./PrivateRoute";
+
+import RequestedMeals from "../pages/UserDashBoardPages/RequestedMeals";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -100,6 +102,16 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       // normal user routes
+
+{
+  path: "requestedmeals",
+  element: <RequestedMeals/>
+
+}
+
+,
+
+
       {
         path: "Adminprofile",
         element: <AdminProfile />,

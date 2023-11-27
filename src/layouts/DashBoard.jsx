@@ -62,7 +62,7 @@ const Dashboard = () => {
                                         My Profile</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/history">
+                                    <NavLink to="/dashboard/requestedmeals">
                                         <FaCalendar></FaCalendar>
                                         Requested Meals</NavLink>
                                 </li>

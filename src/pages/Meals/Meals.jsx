@@ -4,6 +4,7 @@ import SharedBanner from "../../shared/SharedComponents/SharedBanner"
 import MealCard from '../Home/MealCard';
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import InfiniteScroll from 'react-infinite-scroll-component';
 // import useAxiosPublic from "./useAxiosPublic";
 
 const Meals = () => {
@@ -203,12 +204,28 @@ useEffect(() => {
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       ) : (
-        <div className="grid mt-10 gap-5 p-5  lg:p-0  grid-cols-1 lg:grid-cols-3">
+       
+
+<InfiniteScroll   className=''
+  dataLength={showmeals?.length} //This is important field to render the next data
+  next={refetch}
+  // hasMore={true}
+  loader={<h4>Loading...</h4>}
+  endMessage={
+    <p style={{ textAlign: 'center' }}>
+      <b>Yay! You have seen it all</b>
+    </p>
+  }
+  // below props only if you need pull down functionality
+
+> <div className="grid mt-10 gap-5 p-5  lg:p-0  grid-cols-1 lg:grid-cols-2">
           {showmeals.map((meal, idx) => (
            
             <MealCard meal={meal} key={meal._id} />
           ))}
-        </div>
+</div>
+</InfiniteScroll>
+        
       )}
 </div>
            

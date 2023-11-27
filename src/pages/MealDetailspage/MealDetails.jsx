@@ -194,7 +194,9 @@ const mealinfo={
     adminName,
     adminEmail, likeEmails
 
-    ,mealStatus:"pending"
+    ,mealStatus:"pending",
+
+    requestedUsersEmail:user?.email
 
 
 }
