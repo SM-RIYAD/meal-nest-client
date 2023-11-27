@@ -48,7 +48,10 @@ console.log("this is res",res);
         likes:parseInt(data.likes),
         reviews:parseInt(data.reviews),
         adminName:data.distributorname,
-        adminEmail:data.distributoremail}
+        adminEmail:data.distributoremail,
+        likeEmails:[]
+      
+      }
          
     
     

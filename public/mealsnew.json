@@ -3,7 +3,7 @@
         "mealTitle": "Scrambled Eggs",
         "mealType": "Breakfast",
         "mealImage": "https://www.southernliving.com/thmb/iL2CEgCAMqC4cpp6taRqwYQI1gs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/27162_FGFsuperbowl_0359_16x9-2000-5dd253dc23044ee78aacd9673f5befbc.jpg",
-        "ingredients": ["Eggs", "Salt", "Pepper", "Butter"],
+        "ingredients": "Eggs, Salt, Pepper, Butter",
         "description": "Indulge in the delightful flavors of perfectly seasoned scrambled eggs, cooked to perfection with a hint of salt and pepper, and a touch of creamy butter. This classic breakfast dish is a go-to for a hearty and satisfying morning meal that never fails to please. Whether enjoyed on its own or paired with your favorite breakfast sides, these scrambled eggs are a timeless choice for starting your day right.",
         "price": 7.99,
         "rating": 4,
@@ -13,7 +13,7 @@
         "reviews": 0,
         "adminName": "Riyad Sm",
         "adminEmail": "smriyad0185@gmail.com",
-        "likeEmail": ""
+        "likeEmails": []
     },
     {
         "mealTitle": "Avocado Toast",
@@ -29,7 +29,7 @@
         "reviews": 0,
         "adminName": "Riyad Sm",
         "adminEmail": "smriyad0185@gmail.com",
-        "likeEmail": ""
+        "likeEmails": []
     },
     {
         "mealTitle": "Pancakes",
@@ -45,7 +45,7 @@
         "reviews": 0,
         "adminName": "Riyad Sm",
         "adminEmail": "smriyad0185@gmail.com",
-        "likeEmail": ""
+        "likeEmails": []
     },
     {
         "mealTitle": "Chicken Caesar Salad",
@@ -61,7 +61,7 @@
         "reviews": 0,
         "adminName": "Riyad Sm",
         "adminEmail": "smriyad0185@gmail.com",
-        "likeEmail": ""
+        "likeEmails": []
     },
     {
         "mealTitle": "Vegetarian Wrap",
@@ -77,7 +77,7 @@
         "reviews": 0,
         "adminName": "Riyad Sm",
         "adminEmail": "smriyad0185@gmail.com",
-        "likeEmail": ""
+        "likeEmails": []
     },
     {
         "mealTitle": "Spaghetti Bolognese",
@@ -93,7 +93,7 @@
         "reviews": 0,
         "adminName": "Riyad Sm",
         "adminEmail": "smriyad0185@gmail.com",
-        "likeEmail": ""
+        "likeEmails": []
     },
     {
         "mealTitle": "Grilled Salmon",
@@ -109,7 +109,7 @@
         "reviews": 0,
         "adminName": "Riyad Sm",
         "adminEmail": "smriyad0185@gmail.com",
-        "likeEmail": ""
+        "likeEmails": []
     }  ,{
         "mealTitle": "Vegetable Stir-Fry",
         "mealType": "Dinner",
@@ -124,7 +124,7 @@
         "reviews": 0,
         "adminName": "Riyad Sm",
         "adminEmail": "smriyad0185@gmail.com",
-        "likeEmail": ""
+        "likeEmails": []
     },
     {
         "mealTitle": "Margherita Pizza",
@@ -140,5 +140,5 @@
         "reviews": 0,
         "adminName": "Riyad Sm",
         "adminEmail": "smriyad0185@gmail.com",
-        "likeEmail": ""
+        "likeEmails": []
     }]

@@ -17,7 +17,7 @@ import Allmeals from "../pages/AdminDashboard/Allmeals";
 import UpdateMeal from "../pages/AdminDashboard/UpdateMeal";
 import CheckoutPage from "../pages/CheckOutPage/CheckoutPage";
 import MealDetails from "../pages/MealDetailspage/MealDetails";
-
+import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
 
       {
         path: "checkoutpage/:memberpackage",
-        element: <CheckoutPage />,
+        element:  <PrivateRoute><CheckoutPage /></PrivateRoute>  ,
       },
 
       // {
