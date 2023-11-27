@@ -14,12 +14,18 @@ import Swal from "sweetalert2";
 import useReview from "../../hooks/useReview";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useCheckUserPackage from "../../hooks/useCheckUserPackage";
+
 
 const MealDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 //   const meal = useLoaderData();
 const {id}=useParams();
+const axiosPublic=useAxiosPublic();
+const  [dontHavePackage, dontHavePackageLoading]=useCheckUserPackage();
+
+
   const { data: meal={}, isPending: isMealLoading ,refetch} = useQuery({
     queryKey: ["meal"],
 
@@ -31,28 +37,34 @@ const {id}=useParams();
     }
 })
 
+const {
+    
+    mealTitle,
+    mealType,
+    mealImage,
+    ingredients,
+    description,
+    price,
+    rating,
+    time,
 
+    likes,
+    reviews,
+    adminName,
+    adminEmail, likeEmails
+  } = meal;
 const likedemails=meal?.likeEmails
 ;
 let likedEmailscheck;
 if(likedemails){
      likedEmailscheck=likedemails.find((email)=>email===user?.email);
-
 }
-
-
-
-
 console.log("like email check:",likedEmailscheck);
-
-
   const SuccessToast = (successmsg) =>
   toast.success(successmsg, { position: "bottom-center" });
 
   const handleLikeButton = () => {
     if(user?.email){
-
-
        if( likedEmailscheck){
 
 
@@ -150,6 +162,85 @@ console.log("like email check:",likedEmailscheck);
     
 
   };
+
+  const handleRequestMeal=()=>{
+
+      if(dontHavePackage){
+
+        Swal.fire({
+            title: "Can't Request !",
+            text: "You have to buy a package first! ",
+            icon: "warning",
+            confirmButtonText: "Ok"
+          });
+          return;
+      }
+
+
+    if(user?.email){
+
+const mealinfo={
+    mealTitle,
+    mealType,
+    mealImage,
+    ingredients,
+    description,
+    price,
+    rating,
+    time,
+
+    likes,
+    reviews,
+    adminName,
+    adminEmail, likeEmails
+
+    ,mealStatus:"pending"
+
+
+}
+
+axiosPublic.post("/addrequestedmeal",mealinfo, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then((response) => {
+    console.log(response.data);
+    if (response.data.insertedId) {
+      Swal.fire({
+        title: "Success!",
+        text: "Meal requested Successfully",
+        icon: "success",
+        confirmButtonText: "Cool"
+      });
+    }
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    // Handle errors if any
+  });
+
+
+
+console.log("user")
+
+
+    }
+
+    else{
+
+        Swal.fire({
+            title: "Failed !",
+            text: "You have to be logged in",
+            icon: "warning",
+            confirmButtonText: "Ok"
+          });
+        return;
+    }
+
+
+
+  }
   console.log("this is meal in details", meal);
   return (
     <div>
@@ -175,8 +266,8 @@ console.log("like email check:",likedEmailscheck);
             </button>
           </div>
           <div className="flex gap-5">
-            <button className="btn btn-primary bg-red-500 text-white border-none ">
-              Requested meal
+            <button onClick={handleRequestMeal} className="btn btn-primary bg-red-500 text-white border-none ">
+              Request meal
             </button>
             <button
               onClick={handleLikeButton}
