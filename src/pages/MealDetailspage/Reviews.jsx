@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ReviewCards from './ReviewCards';
 import useAuth from '../../hooks/useAuth';
-import { hashKey } from '@tanstack/react-query';
+import { hashKey, useQuery } from '@tanstack/react-query';
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2';
@@ -9,9 +9,19 @@ import useReview from '../../hooks/useReview';
 const Reviews = ({meal}) => {
     const {user}=useAuth();
     const axiosPublic=useAxiosPublic();
-     const [reviews, review_loading, refetch] = useReview();
+    //  const [reviews, review_loading, refetch] = useReview();
 
-     console.log(" revies fromm db",reviews);
+
+ 
+    const url = `/reviews?mealid=${meal?._id}`
+     const {data: reviews = [], isPending: review_loading, refetch} = useQuery({
+      queryKey: ['reviews'], 
+      queryFn: async() =>{
+          const res = await axiosPublic.get(url);
+          return res.data;
+      }
+  })
+     console.log(" revies fromm db",reviews,"for ",meal?._id);
    
 const [reviewToPost,setReviewToPost]= useState("");
     const handleAddReview=()=>{
