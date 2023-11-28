@@ -21,6 +21,7 @@ import PrivateRoute from "./PrivateRoute";
 
 import RequestedMeals from "../pages/UserDashBoardPages/RequestedMeals";
 import UpcomingMealsforUser from "../pages/UpcomingMeals/UpcomingMealsforUser";
+import Myreviews from "../pages/UserDashBoardPages/Myreviews";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -110,6 +111,13 @@ const router = createBrowserRouter([
 
 }
 
+,
+
+{
+  path: "myreviews",
+  element: <Myreviews/>
+
+}
 ,
 
 
