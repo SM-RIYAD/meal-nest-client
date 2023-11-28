@@ -196,7 +196,8 @@ const mealinfo={
 
     ,mealStatus:"pending",
 
-    requestedUsersEmail:user?.email
+    requestedUsersEmail:user?.email,
+    requestedUsersName:user?.displayName
 
 
 }
