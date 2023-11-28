@@ -158,9 +158,6 @@ console.log("like email check:",likedEmailscheck);
           });
       
     }
-
-    
-
   };
 
   const handleRequestMeal=()=>{

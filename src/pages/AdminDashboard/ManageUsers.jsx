@@ -30,6 +30,17 @@ const handleMakeAdmin = user =>{
               timer: 1500
             });
       }
+else 
+      {
+
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: `${user.name} is already an Admin !`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
   })
 }
 

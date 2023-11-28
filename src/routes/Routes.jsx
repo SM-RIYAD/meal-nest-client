@@ -20,6 +20,7 @@ import MealDetails from "../pages/MealDetailspage/MealDetails";
 import PrivateRoute from "./PrivateRoute";
 
 import RequestedMeals from "../pages/UserDashBoardPages/RequestedMeals";
+import UpcomingMealsforUser from "../pages/UpcomingMeals/UpcomingMealsforUser";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/upcomingmeals",
-        element: <UpcomingMeals />,
+        element: <UpcomingMealsforUser/>,
       },
       {
         path: "updatemeal/:id",

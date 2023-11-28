@@ -218,7 +218,9 @@ useEffect(() => {
   }
   // below props only if you need pull down functionality
 
-> <div className="grid mt-10 gap-5 p-5  lg:p-0  grid-cols-1 lg:grid-cols-2">
+>
+  
+   <div className="grid mt-10 gap-5 p-5  lg:p-0  grid-cols-1 lg:grid-cols-2">
           {showmeals.map((meal, idx) => (
            
             <MealCard meal={meal} key={meal._id} />
