@@ -117,6 +117,13 @@ const router = createBrowserRouter([
         path: "Adminprofile",
         element: <AdminProfile />,
       },
+
+      {
+        path: "AllReviews",
+        element: <AllReviews />,
+
+
+      },
       {
         path: "Addmeal",
         element: <AddMeal />,

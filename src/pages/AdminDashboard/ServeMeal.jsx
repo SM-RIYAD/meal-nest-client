@@ -10,7 +10,8 @@ import Swal from "sweetalert2";
 
 const ServeMeal = () => {
   const { user } = useAuth();
-
+  const [searchTerm, setSearchTerm] = useState('');
+  const [meals_to_show, setMeals_to_show] = useState([]);
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -22,7 +23,7 @@ const ServeMeal = () => {
     queryKey: ["r_meals", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/requestedmeals`);
-
+      setMeals_to_show(res.data)
       return res.data;
     },
   });
@@ -73,9 +74,31 @@ const ServeMeal = () => {
   
   
   }
+  const handleSearch=()=>{
+    console.log("this is search term",searchTerm);
+    if(searchTerm.length<=0){
+
+      refetch();
+      return;
+
+    }
+    axiosSecure.get(`/api/search/in_servepage/${searchTerm}`).then((res)=>{ console.log( "this are search result",res.data);setMeals_to_show(res.data)});
+  }
   return <div>this is servemeal page
 
+<div className="flex lg:flex-row w-full my-5 justify-center flex-col">
+                  <input
+                    type="text"
+                    placeholder="Enter email or name"
+                    className="input  mt-5 input-bordered  rounded-none "
+                    required
 
+                    onChange={(e)=>{setSearchTerm(e.target.value)}}
+                  />
+                  <button onClick={handleSearch} className="btn mt-5   rounded-none bg-red-500 border-red-400 border-4  text-white hover:border-none  ">
+                    Search
+                  </button>
+                </div>
 {r_meal_loading? (
         <div className="w-full flex justify-center">
           <span className="loading loading-spinner loading-xl"></span>
@@ -94,7 +117,7 @@ const ServeMeal = () => {
                 </tr>
               </thead>
               <tbody>
-                {requestedmeals.map((meal) => (
+                {meals_to_show.map((meal) => (
                   <tr key={meal._id}>
                     <th>{meal.mealTitle}</th>
                     <td>{meal.requestedUsersEmail}</td>

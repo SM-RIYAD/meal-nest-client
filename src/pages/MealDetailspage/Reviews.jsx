@@ -46,6 +46,9 @@ const Reviews = ({ meal }) => {
         reviewgiversName: user.displayName,
         reviewdmeal_id: meal._id,
         reviewdmeal_name: meal.mealTitle,
+        reviewdmeal_likes:meal.likes,
+        reviewdmeal_review_count:meal.reviews,
+        
       };
       console.log("review info", reviewinfo);
 
