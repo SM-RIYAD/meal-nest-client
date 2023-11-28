@@ -5,7 +5,7 @@ import Errorpage from "../Components/ErrorPage/Errorpage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Meals from "../pages/Meals/Meals";
-import UpcomingMeals from "../pages/UpcomingMeals/UpcomingMeals";
+import UpcomingMeals from "../pages/AdminDashboard/UpcomingMeals"
 import Register from "../pages/Register/Register";
 import Dashboard from "../layouts/DashBoard";
 import AdminProfile from "../pages/AdminDashboard/AdminProfile";
