@@ -23,7 +23,55 @@ const UpcomingMeals = () => {
             return res.data;
         }
     })
-console.log("upcoming meals",showmeals)
+console.log("upcoming meals",showmeals);
+
+
+const handlePublish=(mealToPublish)=>{
+ 
+console.log("total likes",mealToPublish.likes);
+
+if(mealToPublish.likes>9){
+
+
+    axiosSecure.post("addmeal",mealToPublish, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Your Upcoming meal is published !",
+            icon: "success",
+            confirmButtonText: "Cool"
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Handle errors if any
+      });
+
+}
+
+else{
+    Swal.fire({
+        title: "Failed!",
+        text: "At least 10 like is needed !",
+        icon: "error",
+        confirmButtonText: "Cool"
+      });
+
+
+}
+
+
+    
+
+
+}
     return (
         <div>
             <p>this is upcomingsdd meals page</p>
@@ -57,7 +105,11 @@ console.log("upcoming meals",showmeals)
                  
 
                    
-                      <button className="btn btn-xs btn-error ms-1 text-white">
+                      <button onClick={()=>{
+                        handlePublish(meal);
+
+
+                      }} className="btn btn-xs btn-error ms-1 text-white">
                         {" "}
                         Publish{" "}
                       </button>
