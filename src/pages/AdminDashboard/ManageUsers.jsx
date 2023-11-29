@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 const ManageUsers = () => {
     const axiosPublic = useAxiosPublic();
+
+    const [datacount, setDatacount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
     const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+        queryKey: ['users',currentPage,itemsPerPage],
         queryFn: async () => {
-            const res = await axiosPublic.get('users');
+            const res = await axiosPublic.get(`users?page=${currentPage}&size=${itemsPerPage}`);
             console.log("this are the users in response:",res.data)
             return res.data;
         }
     })
+    const {data: count = {}, isPending: count_loading, } = useQuery({
+      queryKey: ['user_count'],
+
+      queryFn: async() =>{
+          const res = await axiosPublic.get('/AllusersCount');
+          setDatacount(res.data.count)
+          return res.data;
+      }
+  })
 
 console.log("this are the users: ",users)
     
@@ -43,6 +56,16 @@ else
       }
   })
 }
+const numberOfPages = Math.ceil(datacount / itemsPerPage);
+
+
+const pages = [...Array(numberOfPages).keys()];
+const handleItemsPerPage = (e) => {
+  const val = parseInt(e.target.value);
+  console.log(val);
+  setItemsPerPage(val);
+  setCurrentPage(0);
+};
 
     return (
         <div>
@@ -95,6 +118,35 @@ else
       </tr> */}
     </tbody>
   </table>
+  <div className="pagination w-full flex my-5 justify-center">
+                    {/* <p>Current page: {currentPage}</p> */}
+                    {/* <button onClick={handlePrevPage}>Prev</button> */}
+                    {pages.map((page) => (
+                      <button
+                        className={`${
+                          currentPage === page
+                            ? "bg-red-400 text-white"
+                            : "bg-gray-300 text-black"
+                        } btn btn-sm `}
+                        onClick={() => setCurrentPage(page)}
+                        key={page}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                    {/* <button onClick={handleNextPage}>Next</button> */}
+                    <select
+                      value={itemsPerPage}
+                      onChange={handleItemsPerPage}
+                      name=""
+                      id=""
+                    >
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="50">50</option>
+                    </select>
+                  </div>
 </div>
 
 

@@ -7,7 +7,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const AllReviews = () => {
-    const url = `/reviews`;
+  const [datacount, setDatacount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+    const url = `/reviews?page=${currentPage}&size=${itemsPerPage}`;
+    const {data: count = {}, isPending: count_loading, } = useQuery({
+      queryKey: ['all_review_count'],
+
+      queryFn: async() =>{
+          const res = await axiosPublic.get('/AllreviewsCount');
+          setDatacount(res.data.count)
+          return res.data;
+      }
+  })
+
 const navigate= useNavigate();
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
@@ -19,9 +32,9 @@ const navigate= useNavigate();
       isPending: review_loading,
       refetch,
     } = useQuery({
-      queryKey: ["reviews"],
+      queryKey: ["reviews",currentPage,itemsPerPage],
       queryFn: async () => {
-        const res = await axiosPublic.get(url);
+        const res = await axiosPublic.get( `/reviews?page=${currentPage}&size=${itemsPerPage}`);
         setShowReviews(res.data)
         return res.data;
       },
@@ -85,6 +98,16 @@ const handleSortbyReview = () => {
           });
 
     }
+    const numberOfPages = Math.ceil(datacount / itemsPerPage);
+
+
+const pages = [...Array(numberOfPages).keys()];
+const handleItemsPerPage = (e) => {
+  const val = parseInt(e.target.value);
+  console.log(val);
+  setItemsPerPage(val);
+  setCurrentPage(0);
+};
     return (
         <div>
             
@@ -164,6 +187,35 @@ const handleSortbyReview = () => {
               </tbody>
             </table>
           </div>
+          <div className="pagination w-full flex my-5 justify-center">
+                    {/* <p>Current page: {currentPage}</p> */}
+                    {/* <button onClick={handlePrevPage}>Prev</button> */}
+                    {pages.map((page) => (
+                      <button
+                        className={`${
+                          currentPage === page
+                            ? "bg-red-400 text-white"
+                            : "bg-gray-300 text-black"
+                        } btn btn-sm `}
+                        onClick={() => setCurrentPage(page)}
+                        key={page}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                    {/* <button onClick={handleNextPage}>Next</button> */}
+                    <select
+                      value={itemsPerPage}
+                      onChange={handleItemsPerPage}
+                      name=""
+                      id=""
+                    >
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="50">50</option>
+                    </select>
+                  </div>
         </div>
       )}
         </div>
