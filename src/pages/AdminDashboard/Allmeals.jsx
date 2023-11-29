@@ -6,32 +6,70 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 const Allmeals = () => {
-  const [meals, loading, refetch] = useMeals();
+  // const [meals, loading, refetch] = useMeals();
+  const [datacount, setDatacount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+    const axiosPublic = useAxiosPublic();
 
-//   const axiosPublic = useAxiosPublic();
+    const {data: meals = [], isPending: loading, refetch} = useQuery({
+      queryKey: ['meals',currentPage,itemsPerPage],
 
-//   const {data: meals = [], isPending: loading, refetch} = useQuery({
-//     queryKey: ['meals'], 
-   
-//     queryFn: async() =>{
-//         const res = await axiosPublic.get('/meals');
-//         return res.data;
-//     }
-// })
-
-
-
-
+      queryFn: async() =>{
+          const res = await axiosPublic.get(`/meals?page=${currentPage}&size=${itemsPerPage}`);
+          return res.data;
+      }
+  })
 
 
+      const {data: count = {}, isPending: count_loading, } = useQuery({
+      queryKey: ['meal_count'],
+
+      queryFn: async() =>{
+          const res = await axiosPublic.get('/AllmealsCount');
+          setDatacount(res.data.count)
+          return res.data;
+      }
+  })
 
   const [showmeals, setShowmeals] = useState(meals);
-  () => {
-    setShowmeals(meals);
-  },
-    [meals];
-console.log("show meals",showmeals );
-console.log("meals", meals );
+  // () => {
+  //   setShowmeals(meals);
+  // },
+
+  // [meals];
+console.log("data count: ",count?.count)
+
+
+
+  const numberOfPages = Math.ceil(datacount / itemsPerPage);
+
+  // const pages = []
+  // for(let i = 0; i < numberOfPages; i++){
+  //     pages.push(i)
+  // }
+  const pages = [...Array(numberOfPages).keys()];
+  const handleItemsPerPage = (e) => {
+    const val = parseInt(e.target.value);
+    console.log(val);
+    setItemsPerPage(val);
+    setCurrentPage(0);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  console.log("show meals", showmeals);
+  console.log("meals", meals);
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -67,53 +105,52 @@ console.log("meals", meals );
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       ) : (
-        <div>
-          <div className="overflow-x-auto">
-            <table className="table table-xs">
-              <thead>
-                <tr>
-                  <th>Meal Title</th>
-                  <th>Likes Count</th>
-                  <th>Reviews Count </th>
-                  <th>Distributor Name</th>
-                  <th>Distributor Emai</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {meals.map((meal) => (
-                  <tr key={meal._id}>
-                    <th>{meal.mealTitle}</th>
-                    <td>{meal.likes}</td>
-                    <td>{meal.reviews}</td>
-                    <td>{meal.adminName}</td>
-                    <td>{meal.adminEmail}</td>
-                    <td>
-                      <Link to={`/updatemeal/${meal._id}`}>
+        <div className="overflow-x-auto">
+          <table className="table table-xs">
+            <thead>
+              <tr>
+                <th>Meal Title</th>
+                <th>Likes Count</th>
+                <th>Reviews Count </th>
+                <th>Distributor Name</th>
+                <th>Distributor Emai</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {meals.map((meal) => (
+                <tr key={meal._id}>
+                  <th>{meal.mealTitle}</th>
+                  <td>{meal.likes}</td>
+                  <td>{meal.reviews}</td>
+                  <td>{meal.adminName}</td>
+                  <td>{meal.adminEmail}</td>
+                  <td>
+                    <Link to={`/updatemeal/${meal._id}`}>
+                      {" "}
+                      <button className="btn btn-xs ms-1 btn-error text-white">
                         {" "}
-                        <button className="btn btn-xs ms-1 btn-error text-white">
-                          {" "}
-                          Update{" "}
-                        </button>
-                      </Link>
+                        Update{" "}
+                      </button>
+                    </Link>
 
-                      <button
-                        onClick={() => {
-                          handleDelete(meal._id);
-                        }}
-                        className="btn ms-1 btn-xs btn-error text-white"
-                      >
-                        {" "}
-                        Delete{" "}
-                      </button>
-                      <button className="btn btn-xs btn-error ms-1 text-white">
-                        {" "}
-                        view{" "}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-                {/* <tr>
+                    <button
+                      onClick={() => {
+                        handleDelete(meal._id);
+                      }}
+                      className="btn ms-1 btn-xs btn-error text-white"
+                    >
+                      {" "}
+                      Delete{" "}
+                    </button>
+                    <button className="btn btn-xs btn-error ms-1 text-white">
+                      {" "}
+                      view{" "}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+              {/* <tr>
                   <th>1</th>
                   <td>Cy Ganderton</td>
                   <td>Quality Control Specialist</td>
@@ -134,17 +171,46 @@ console.log("meals", meals );
                     </button>
                   </td>
                 </tr> */}
-
-              </tbody>
-              <tfoot>
-      <tr>
-        <th></th>
-        <th>Job</th> 
-    
-      </tr>
-    </tfoot>
-            </table>
-          </div>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th></th> <th></th>
+                <th>
+                 {" "}
+                </th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+          <div className="pagination w-full flex my-5 justify-center">
+                    {/* <p>Current page: {currentPage}</p> */}
+                    {/* <button onClick={handlePrevPage}>Prev</button> */}
+                    {pages.map((page) => (
+                      <button
+                        className={`${
+                          currentPage === page
+                            ? "bg-red-400 text-white"
+                            : "bg-gray-300 text-black"
+                        } btn btn-sm `}
+                        onClick={() => setCurrentPage(page)}
+                        key={page}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                    {/* <button onClick={handleNextPage}>Next</button> */}
+                    <select
+                      value={itemsPerPage}
+                      onChange={handleItemsPerPage}
+                      name=""
+                      id=""
+                    >
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="50">50</option>
+                    </select>
+                  </div>
         </div>
       )}
     </div>

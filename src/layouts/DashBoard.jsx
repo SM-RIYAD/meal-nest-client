@@ -12,9 +12,9 @@ const Dashboard = () => {
     // const isAdmin=false;
  console.log("is admin or not",isAdmin)
     return (
-        <div className="flex mx-auto max-w-6xl">
+        <div className="flex  mx-auto max-w-6xl">
             {/* dashboard side bar */}
-            <div className="w-64 min-h-screen bg-red-400">
+            <div className="lg:w-64 min-h-screen   bg-red-400">
                 <ul className="menu p-4">
                     {
                         isAdmin ? <>

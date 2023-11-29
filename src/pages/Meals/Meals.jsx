@@ -10,7 +10,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 const Meals = () => {
             const axiosPublic= useAxiosPublic();
     const [rangeValue, setRangeValue] = useState(0);
-    const [selectedOption, setSelectedOption] = useState("");
+    const [selectedOption, setSelectedOption] = useState("All meals");
 
       const [searchTerm, setSearchTerm] = useState('');
     // Event handler for range input changes
@@ -62,6 +62,28 @@ const Meals = () => {
         console.log("this is range value", rangeValue);
         if (rangeValue === 0) {
             // setShowmeals(meals);
+            if(selectedOption){
+
+              if(selectedOption==="All meals"){
+              
+                  mealsby_category= meals;
+              }
+              else{
+  
+                  mealsby_category=[...meals].filter(
+                      (meal) => meal.mealType.toUpperCase() === selectedOption.toUpperCase()
+                    );
+  
+  
+              }
+              setShowmeals(mealsby_category);   
+            }
+            else{
+  
+              setShowmeals(meals);
+            }
+
+
         } else {
           let newmeals = meals.filter(
             (meal) =>  rangeValue>=meal?.price
@@ -93,13 +115,23 @@ const Meals = () => {
 
         }
         // console.log("this is job array after filter ", jobs);
-      }, [rangeValue]);
+      }, [rangeValue,selectedOption,meals]);
 
 useEffect(() => {
     let p_sorted_meals;
-    if (selectedOption === "All Jobs") {
+    if (selectedOption === "All meals") {
            
-        setShowmeals(meals);
+      if(rangeValue){
+     
+        p_sorted_meals = [...meals].filter(
+           (meal) =>  rangeValue>=meal?.price)
+           setShowmeals(p_sorted_meals);
+   
+   } else{
+    setShowmeals(meals);
+
+   }
+        
 
 
         
@@ -124,7 +156,7 @@ useEffect(() => {
 
 
 
-},[selectedOption])
+},[rangeValue,selectedOption,meals])
 
 
 
@@ -188,7 +220,7 @@ useEffect(() => {
             onChange={handleSelectChange}
             className="select md:ms-5 md:max-w-[300px] max-w-[300px]  select-bordered w-full ms-2"
           >
-            <option value="All Jobs">Select a Category</option>
+            <option value="All meals">Select a Category</option>
             <option value="Breakfast">Breakfast</option>
             <option value="Lunch">Lunch</option>
             <option value="Dinner">Dinner</option>

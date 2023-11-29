@@ -41,7 +41,7 @@ const[badge_img,setbadge_image]=useState("");
 
     return (
         <div>
-            <div className='flex  gap-10 p-20 '>
+            <div className='flex lg:flex-row flex-col  gap-10 p-20 '>
                  
                  <div className='  flex flex-col space-y-3 justify-center'>
 

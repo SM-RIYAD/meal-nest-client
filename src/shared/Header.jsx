@@ -46,36 +46,6 @@ const Header = () => {
           Upcoming Meals
         </Link>
       </li>
-      {user?.displayName && (
-        <li className={`${user ? "pt-5" : "pt-5"} `}>
-          <Link
-            className={`${pathname === "/myjobs" ? "active-link" : ""}`}
-            to="/myjobs"
-          >
-            MY JOBS
-          </Link>
-        </li>
-      )}
-      {user?.displayName && (
-        <li className={`${user ? "pt-5" : "pt-5"} `}>
-          <Link
-            className={`${pathname === "/addajob" ? "active-link" : ""}`}
-            to="/addajob"
-          >
-            ADD JOB
-          </Link>
-        </li>
-      )}
-      {user?.displayName && (
-        <li className={`${user ? "pt-5" : "pt-5"} `}>
-          <Link
-            className={`${pathname === "/appliedjobs" ? "active-link" : ""}`}
-            to="/appliedjobs"
-          >
-            APPLIED JOBS
-          </Link>
-        </li>
-      )}
 
       {/* <li className={`${user ? "pt-10" : "pt-5"} `}>
         {user?.displayName ? (
