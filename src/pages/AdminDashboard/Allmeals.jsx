@@ -134,7 +134,15 @@ console.log("meals", meals );
                     </button>
                   </td>
                 </tr> */}
+
               </tbody>
+              <tfoot>
+      <tr>
+        <th></th>
+        <th>Job</th> 
+    
+      </tr>
+    </tfoot>
             </table>
           </div>
         </div>

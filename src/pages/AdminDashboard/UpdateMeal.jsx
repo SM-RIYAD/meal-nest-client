@@ -134,6 +134,7 @@ const UpdateMeal = () => {
         reviews: parseInt(data.reviews),
         adminName: data.distributorname,
         adminEmail: data.distributoremail,
+        likeEmails:likeEmails
       };
 
       console.log("this is meal info for ", mealinfotoUpdate);

@@ -27,13 +27,43 @@ console.log("upcoming meals",showmeals);
 
 
 const handlePublish=(mealToPublish)=>{
- 
-console.log("total likes",mealToPublish.likes);
+  const {
+    
+    mealTitle,
+    mealType,
+    mealImage,
+    ingredients,
+    description,
+    price,
+    rating,
+    time,
+
+    likes,
+    reviews,
+    adminName,
+    adminEmail, likeEmails
+  } = mealToPublish;
+console.log("total likes",mealToPublish.likes, mealToPublish);
 
 if(mealToPublish.likes>9){
 
 
-    axiosSecure.post("addmeal",mealToPublish, {
+    axiosSecure.post("addmeal",{
+    
+      mealTitle,
+      mealType,
+      mealImage,
+      ingredients,
+      description,
+      price,
+      rating,
+      time,
+  
+      likes,
+      reviews,
+      adminName,
+      adminEmail, likeEmails
+    }, {
         headers: {
           "Content-Type": "application/json"
         }
@@ -57,6 +87,7 @@ if(mealToPublish.likes>9){
 }
 
 else{
+  console.log("meal to publish",mealToPublish);
     Swal.fire({
         title: "Failed!",
         text: "At least 10 like is needed !",

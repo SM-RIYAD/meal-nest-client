@@ -28,6 +28,26 @@ const navigate= useNavigate();
     });
 
 
+
+
+
+
+const handleSortbyLike = () => {
+    console.log("sort by.reviewdmeal_likes like is clicked");
+    const sortedReviews = [...show_reviews].sort((a, b) => b.reviewdmeal_likes - a.reviewdmeal_likes);
+    setShowReviews(sortedReviews);
+};
+
+const handleSortbyReview = () => {
+    console.log("sort by review is clicked");
+    const sortedRReviews = [...show_reviews].sort((a, b) => b.reviewdmeal_review_count - a.reviewdmeal_review_count);
+    setShowReviews(sortedRReviews);
+};
+
+
+
+
+
     const handleView=(id)=>{
 
         navigate(`/mealdetails/${id}`)
@@ -74,7 +94,14 @@ const navigate= useNavigate();
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       ) : (
-        <div>
+        <div> 
+            <div className='flex w-full justify-between my-10'>
+
+                <button onClick={handleSortbyLike} className='btn btn-sm btn-error bg-red-500 ms-1 text-white'>SORT BY LIKE COUNT</button>
+                <button onClick={handleSortbyReview} className='btn btn-sm btn-error bg-red-500 ms-1 text-white'>SORT BY REVIEW COUNT</button>
+
+                
+            </div>
           <div className="overflow-x-auto">
             <table className="table table-xs">
               <thead>
@@ -106,9 +133,9 @@ const navigate= useNavigate();
                         {" "}
                         Delete{" "}
                       </button>
-                      <button onClick={()=>{handleView(review.reviewdmeal_id)}} className="btn btn-xs btn-error ms-1 text-white">
+                      <button onClick={()=>{handleView(review.reviewdmeal_id)}} className="btn btn-xs btn-success ms-1 text-white">
                         {" "}
-                        view{" "}
+                        view meal{" "}
                       </button>
                     </td>
                   </tr>

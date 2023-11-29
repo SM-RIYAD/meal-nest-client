@@ -3,7 +3,9 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import "./Header.css";
+import useAdmin from "../hooks/useAdmin";
 const Header = () => {
+   const [isAdmin] = useAdmin();
   const { user, logOut } = useContext(AuthContext);
   const { pathname } = useLocation();
   console.log("this is from header", pathname);
@@ -133,7 +135,7 @@ const Header = () => {
                   <a>{user?.displayName}</a>
                 </li>
                 <li>
-                  <Link to={"/dashboard"}> 
+                  <Link to={`${isAdmin===true? "/dashboard": "/dashboard/userProfile"}`}> 
                   <a>Dashboard</a>
                   </Link>
                 

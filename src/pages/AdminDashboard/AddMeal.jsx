@@ -291,13 +291,13 @@ console.log("this is res",res);
               type="submit"
               value="Add Meal"
               onClick={()=>{setReason("to Add")}}
-              className="btn btn-block text-white border-none bg-emerald-500 "
+              className="btn btn-block text-white border-none bg-red-500 "
             />
               <input
               type="submit"
               value="Add to Upcoming meals"
               onClick={()=>{setReason("to highlight")}}
-              className="btn btn-block text-white border-none bg-emerald-500 "
+              className="btn btn-block text-white border-none bg-red-500 "
             />
           </form>
         </div>
