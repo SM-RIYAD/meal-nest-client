@@ -32,9 +32,9 @@ const Mealtab = () => {
   };
 
   return (
-    <div className="mx-auto lg:max-w-6xl">
+    <div className="mx-auto mt-10 lg:max-w-6xl">
       <Tabs>
-        <TabList className="flex flex-wrap justify-center  text-emerald-500 font-bold">
+        <TabList className="flex flex-wrap justify-center  text-red-500 font-bold">
           <Tab
             onClick={() => {
               setShowmeals(meals);

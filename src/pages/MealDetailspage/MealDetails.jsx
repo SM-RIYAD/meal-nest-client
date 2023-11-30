@@ -31,7 +31,7 @@ const  [dontHavePackage, dontHavePackageLoading]=useCheckUserPackage();
 
     queryFn: async () => {
         console.log('asking or checking is admin', user)
-        const res = await axiosSecure.get(`http://localhost:5000/specificmeal/${id}`);
+        const res = await axiosSecure.get(`https://meal-nest-server-orpin.vercel.app/specificmeal/${id}`);
         console.log( "meal details",res.data);
         return res.data;
     }
@@ -261,9 +261,9 @@ console.log("user")
           <p>{meal.description}</p>
           <div className="flex items-center">
             {/* <p className='font-bold text-xl text-gray-300 pe-2'>Ingridiants:</p> */}
-            <button className="btn   btn-outline text-red-400  hover:bg-white  hover:text-red-400">
-              {meal.ingredients}
-            </button>
+          
+
+            <p className="text-gray-400 font-bold "> <i>Ingredients: {meal.ingredients}</i> </p>
           </div>
           <div className="flex gap-5">
             <button onClick={handleRequestMeal} className="btn btn-primary bg-red-500 text-white border-none ">

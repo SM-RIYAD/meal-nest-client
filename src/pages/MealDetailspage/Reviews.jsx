@@ -26,7 +26,7 @@ const Reviews = ({ meal }) => {
   } = useQuery({
     queryKey: ["reviews"],
     queryFn: async () => {
-      const res = await axiosPublic.get(url);
+      const res = await axiosSecure.get(url);
       return res.data;
     },
   });

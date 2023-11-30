@@ -33,16 +33,20 @@ const UpcomingMeals = () => {
     queryKey: ["upcomingmeal", currentPage, itemsPerPage],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/upcomingmeals?page=${currentPage}&size=${itemsPerPage}`
+        `https://meal-nest-server-orpin.vercel.app/upcomingmeals?page=${currentPage}&size=${itemsPerPage}`
       );
       console.log("upcoming meals", res.data);
 
       const mealdata = res.data;
-      const sortedMeals = mealdata.sort((a, b) => b.likes - a.likes);
+      const sortedMeals = [...mealdata].sort((a, b) => b.likes - a.likes);
       setShowmeals(sortedMeals);
       return res.data;
     },
   });
+  const handleLikeSort = () => {
+    let sorteddMeals = [...meals].sort((a, b) => b.likes - a.likes);
+    setShowmeals(sorteddMeals);
+  };
   console.log("upcoming meals", showmeals);
 
   const handlePublish = (mealToPublish) => {
@@ -115,7 +119,7 @@ const UpcomingMeals = () => {
   };
 
   const numberOfPages = Math.ceil(datacount / itemsPerPage);
-console.log("number of pages:", numberOfPages)
+  console.log("number of pages:", numberOfPages);
   // const pages = []
   // for(let i = 0; i < numberOfPages; i++){
   //     pages.push(i)
@@ -129,13 +133,22 @@ console.log("number of pages:", numberOfPages)
   };
   return (
     <div>
-      <p>this is upcomingsdd meals page</p>
+
       {loading ? (
         <div className="w-full flex justify-center">
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       ) : (
         <div>
+          <div className="w-full ">
+            <button
+              onClick={handleLikeSort}
+              className="btn btn-primary btn-sm my-10 bg-red-500 text-white border-none"
+            >
+              {" "}
+              SORT BASED ON LIKES
+            </button>
+          </div>
           <div className="overflow-x-auto">
             <table className="table table-xs">
               <thead>
@@ -169,27 +182,6 @@ console.log("number of pages:", numberOfPages)
                     </td>
                   </tr>
                 ))}
-                {/* <tr>
-                  <th>1</th>
-                  <td>Cy Ganderton</td>
-                  <td>Quality Control Specialist</td>
-                  <td>Littel, Schaden and Vandervort</td>
-                  <td>Canada</td>
-                  <td>
-                    <button className="btn btn-xs ms-1 btn-error text-white">
-                      {" "}
-                      Update{" "}
-                    </button>
-                    <button className="btn ms-1 btn-xs btn-error text-white">
-                      {" "}
-                      Delete{" "}
-                    </button>
-                    <button className="btn btn-xs btn-error ms-1 text-white">
-                      {" "}
-                      view{" "}
-                    </button>
-                  </td>
-                </tr> */}
               </tbody>
             </table>
           </div>

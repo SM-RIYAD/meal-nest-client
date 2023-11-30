@@ -101,7 +101,7 @@ const handleEdit =(e)=>{
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/deletereview/${id}`, {
+        fetch(`https://meal-nest-server-orpin.vercel.app/deletereview/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

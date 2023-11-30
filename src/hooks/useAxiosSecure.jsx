@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'https://meal-nest-server-orpin.vercel.app/',
     withCredentials: true
 });
 // const axiosSecure = axios.create({

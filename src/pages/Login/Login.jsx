@@ -6,7 +6,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import PageTitle from "../../Components/PageTitle";
 import LoginBanner from "./LoginBanner";
 import { useForm } from "react-hook-form";
-
+import SharedBanner from "../../shared/SharedComponents/SharedBanner";
 import axios from "axios";
 // import AuthProvider, { AuthContext } from "../../providers/AuthProvider";
 // import Header from "../Home/Header/Header";
@@ -114,7 +114,7 @@ const { signIn,googleSignIn,theme }=useContext(AuthContext);
     <div  className="">
    <PageTitle title={"Login"}></PageTitle>
       <ToastContainer />
-      <LoginBanner/>
+                   <SharedBanner title={"LOG IN"}></SharedBanner>
       <div className="hero min-h-screen ">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:block hidden lg:text-left h-full w-full  ">
@@ -173,14 +173,14 @@ const { signIn,googleSignIn,theme }=useContext(AuthContext);
                   {" "}
                   <p>
                     New to the web site?
-                    <span className="text-emerald-500 font-bold underline">
+                    <span className="text-red-500 font-bold underline">
                       <Link to={"/register"}>Register </Link>
                     </span>
                   </p>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-emerald-500 btn-primary border-0 text-white">
+                <button className="btn bg-red-500 btn-primary border-0 text-white">
                   Login
                 </button>
                
@@ -190,7 +190,7 @@ const { signIn,googleSignIn,theme }=useContext(AuthContext);
                 </button> */}
             </form> 
             <div className="flex justify-center w-full">
-            <button onClick={handleGoogleSignin} className=" lg:w-[320px] w-[220px] btn mt-1 mb-5  bg-emerald-500 btn-primary border-0 text-white">
+            <button onClick={handleGoogleSignin} className=" lg:w-[320px] w-[220px] btn mt-1 mb-5  bg-red-500 btn-primary border-0 text-white">
                   Log In With Google
                 </button>
 

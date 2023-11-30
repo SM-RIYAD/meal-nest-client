@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         path: "/mealdetails/:id",
         element: <MealDetails />,
         loader: ({ params }) =>
-        fetch(`http://localhost:5000/specificmeal/${params.id}`)
+        fetch(`https://meal-nest-server-orpin.vercel.app/specificmeal/${params.id}`)
       },
       {
         path: "/register",
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
         path: "updatemeal/:id",
         element: <UpdateMeal />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/specificmeal/${params.id}`),
+          fetch(`https://meal-nest-server-orpin.vercel.app/specificmeal/${params.id}`),
       },
 
       {
@@ -71,36 +71,7 @@ const router = createBrowserRouter([
         element:  <PrivateRoute><CheckoutPage /></PrivateRoute>  ,
       },
 
-      // {
-      //     path: '/blogs',
-      //     element: <Blogs/>,
-
-      // },
-      // {
-      //     path: '/register',
-      //     element: <Register/>,
-
-      // },
-      // {
-      //     path: '/addajob',
-      //     element:  <PrivateRoute><Addajob/> </PrivateRoute>,
-
-      // },
-      // {
-      //     path: '/appliedjobs',
-      //     element: <PrivateRoute><AppliedJobs/></PrivateRoute>
-
-      // },
-      // {
-      //     path: '/jobdetails/:id',
-      //     element:  <PrivateRoute><JobDetails/></PrivateRoute>
-
-      // },
-      // {
-      //     path: '/updatejob/:id',
-      //     element: <UpdateJob></UpdateJob>
-
-      // },
+    
     ],
   },
   {

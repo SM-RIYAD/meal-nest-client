@@ -19,7 +19,7 @@ const UpcomingMealsforUser = () => {
     const {data: meals = [], isPending: loading, refetch} = useQuery({
         queryKey: ['upcomingmeal'], 
         queryFn: async() =>{
-            const res = await axios.get('http://localhost:5000/upcomingmeals');
+            const res = await axios.get('https://meal-nest-server-orpin.vercel.app/upcomingmeals');
             console.log("upcoming meals",res.data)
 
             const mealdata= res.data;

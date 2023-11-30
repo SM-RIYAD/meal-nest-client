@@ -4,6 +4,7 @@ import PageTitle from '../../Components/PageTitle';
 import Mealtab from './Mealtab';
 import Banner2 from './Banner/Banner2';
 import Membership from './Membership/Membership';
+import FAQ from './FAQ/FAQ';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
           
             <Mealtab/>
 <Membership></Membership>
+<FAQ></FAQ>
 
         </div>
     );

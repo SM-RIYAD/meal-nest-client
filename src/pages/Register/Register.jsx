@@ -7,11 +7,12 @@ import PageTitle from "../../Components/PageTitle";
 import RegisterBanner from "./RegisterBanner";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SharedBanner from "../../shared/SharedComponents/SharedBanner";
 
 // import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
-  const axiosPublic= useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
   //   const { createUser, updateUser,logOut } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,16 +39,15 @@ const Register = () => {
         SuccessToast("Successfully logged in !");
         console.log(result.user);
         const userInfo = {
-            email: result.user?.email,
-            name: result.user?.displayName,
-            badge:'bronze',
-            role:'admin'
-        }
-        axiosPublic.post('/users', userInfo)
-        .then(res =>{
-            console.log(res.data);
-            // navigate('/');
-        })
+          email: result.user?.email,
+          name: result.user?.displayName,
+          badge: "bronze",
+          role: "admin",
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+          // navigate('/');
+        });
 
         // <Navigate state={location.pathname} to={location?.state ? location.state : '/'}></Navigate>
         navigate(location?.state ? location.state : "/", {
@@ -86,34 +86,21 @@ const Register = () => {
             .then((result) => {
               console.log("profile updated", result);
               SuccessToast("user Created!");
-              
+
               logOut();
-
-
-
 
               reset();
 
               const userInfo = {
                 email: email,
                 name: name,
-                badge:'bronze',
-                role:'normal'
-            }
-            axiosPublic.post('/users', userInfo)
-            .then(res =>{
+                badge: "bronze",
+                role: "normal",
+              };
+              axiosPublic.post("/users", userInfo).then((res) => {
                 console.log(res.data);
                 // navigate('/');
-            })
-    
-
-
-
-
-
-
-
-
+              });
 
               // ...
             })
@@ -133,7 +120,7 @@ const Register = () => {
     <div>
       <PageTitle title={"Register"}></PageTitle>
       <ToastContainer />
-      <RegisterBanner></RegisterBanner>
+      <SharedBanner title={"REGISTER"}></SharedBanner>
       <div className="hero min-h-screen ">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left h-full w-full lg:block hidden  ">
@@ -226,14 +213,14 @@ const Register = () => {
                   {" "}
                   <p>
                     Have an account?
-                    <span className="text-emerald-500 font-bold underline">
+                    <span className="text-red-500 font-bold underline">
                       <Link to={"/login"}>Log in </Link>
                     </span>
                   </p>
                 </label>
               </div>
               <div className="form-controls mt-6">
-                <button className="btn bg-emerald-500 btn-primary border-0 text-white">
+                <button className="btn lg:w-[320px] w-[220px] bg-red-500 btn-primary border-0 text-white">
                   Register
                 </button>
               </div>
@@ -241,7 +228,7 @@ const Register = () => {
             <div className="flex justify-center w-full">
               <button
                 onClick={handleGoogleSignin}
-                className=" lg:w-[320px] w-[220px] btn mt-1 mb-5  bg-emerald-500 btn-primary border-0 text-white"
+                className=" lg:w-[320px] w-[220px] btn mt-1 mb-5  bg-red-500 btn-primary border-0 text-white"
               >
                 Continue With Google
               </button>

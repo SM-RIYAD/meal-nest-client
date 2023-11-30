@@ -47,20 +47,7 @@ const Header = () => {
         </Link>
       </li>
 
-      {/* <li className={`${user ? "pt-10" : "pt-5"} `}>
-        {user?.displayName ? (
-          <p onClick={handleLogout} className="border-0">
-            Logout
-          </p>
-        ) : (
-          <Link
-            className={`${pathname === "/login" ? "active-link" : ""}`}
-            to="/login"
-          >
-            <p className="border-0">Log in</p>
-          </Link>
-        )}
-      </li> */}
+      
     </>
   );
 
@@ -69,25 +56,7 @@ const Header = () => {
       <li>
         {
           user ? (
-            // <div className="  lg:ms-0 uppercase  flex items-center flex-col mt-6 gap-2  ">
-            //   <div className="rounded-full  tooltip flex gap-5">
-            //     <div
-            //       className="w-12 rounded-full  tooltip"
-            //       data-tip={user?.displayName}
-            //     >
-            //       <img className="rounded-full" src={user?.photoURL} />
-            //     </div>
-            //     <btn
-            //       onClick={handleLogout}
-            //       className={`border-0 ${
-            //         pathname === "/" ? "" : "hidden"
-            //       }  btn btn-error btn-outline`}
-            //     >
-            //       Logout
-            //     </btn>
-            //   </div>
-            //   {/* <p className="font-bold  ">{user.displayName}</p> */}
-            // </div>
+          
             <details>
               <summary>
 
@@ -100,11 +69,11 @@ const Header = () => {
 
                 
               </summary>
-              <ul className="p-2 bg-opacity-70">
+              <ul className="p-2 bg-white ">
                 <li>
                   <a>{user?.displayName}</a>
                 </li>
-                <li>
+                <li className="hover:text-white">
                   <Link to={`${isAdmin===true? "/dashboard": "/dashboard/userProfile"}`}> 
                   <a>Dashboard</a>
                   </Link>
@@ -128,7 +97,7 @@ const Header = () => {
               <p className="border-0  font-bold">Join Us</p>
             </Link>
           )
-          // <div>JoinUS</div>
+   
         }
       </li>
     </>
@@ -156,69 +125,34 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu  z-40 menu-sm dropdown-content mt-3  p-2 shadow bg-base-200 rounded-box w-52"
+              className="menu  z-40 menu-sm dropdown-content mt-3  p-2 shadow bg-black rounded-box w-52"
             >
               {navLinks}
               {endlinks}
             </ul>
           </div>
-          <a className=" text-2xl     ">
-            {/* <div className=" lg:w-2/3 w-[200px] ">
-              <img
-                className=" "
-                src={` ${"https://i.ibb.co/sJcZxsz/jobspherenew-removebg-preview.png"}`}
-              />
-            </div> */}
-            Meal Nest
-          </a>
+        
+      <div className="lg:w-1/2 object-cover   w-full h-full">
+
+      <img className="lg:flex hidden object-cover" src="https://i.ibb.co/vZmgLmZ/mealnestlogo-removebg-preview-1.png" alt=""  />
+
+
+      <p className="lg:hidden flex text-xl text-red-400 font-bold">
+
+MEAL NEST
+
+      </p>
+      </div>
+   
+        
         </div>
         <div className="navbar-center hidden lg:flex">
-          {/* <ul className="menu menu-horizontal px-1">{navLinks}</ul> */}
+
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{endlinks}</ul>
-          {/* {user?.displayName ? (
-            <button
-              onClick={handleLogout}
-              className="btn btn-primary bg-red-400 border-0 text-white"
-            >
-              {" "}
-              Logout
-            </button>
-          ) : (
-            <Link to={"/login"}>
-              <button className="btn border-0  bg-red-400 text-white">
-                {" "}
-                Log in
-              </button>{" "}
-            </Link>
-          )} */}
-          {/* {theme === "light" && (
-            <button
-              onClick={() => {setTheme("dark");
-              console.log("this is theme ",theme)
-            
-            }}
-              className="btn btn-primary ms-5  border-0 text-white"
-            >
-              {" "}
-              Dark
-            </button>
-          )}
-
-          {theme === "dark" && (
-            <button
-              onClick={() => {setTheme("light")
-            
-            
-            console.log("this is theme ",theme)}}
-              className="btn btn-primary ms-5 border-0 text-white"
-            >
-              {" "}
-              Light
-            </button>
-          )} */}
+       
         </div>
       </div>
     </div>
