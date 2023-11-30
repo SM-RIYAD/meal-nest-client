@@ -11,11 +11,21 @@ const Checkoutform = ({ payment_price, payment_badge, plan }) => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
+  const [badge_img, setbadge_image] = useState("");
   const stripe = useStripe();
   const elements = useElements();
 
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
+  // if (plan?.name === "GOLD") {
+  //   setbadge_image("https://i.ibb.co/dG1gthP/gold.jpg");
+  // } else if (plan?.name=== "PLATINUM") {
+  //   setbadge_image("https://i.ibb.co/NjgFsvN/platinum-2.jpg");
+  // } else if (plan?.name === "SILVER") {
+  //   setbadge_image("https://i.ibb.co/Zmrh7K7/silvermember.jpg");
+  // } else {
+  //   setbadge_image("https://i.ibb.co/M6tVJCY/bronze.jpg");
+  // }
 
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -153,10 +163,10 @@ const Checkoutform = ({ payment_price, payment_badge, plan }) => {
           <div className="card-actions justify-end"></div>
         </div>
       </div>
-<div className="lg:ms-auto ms-20  w-1/2  lg:w-1/4 ">
-<img className="   w-full object-cover" src="https://www.onlygfx.com/wp-content/uploads/2022/04/blank-gold-badge-label-2.png" alt="" srcset="" />
-<p className="text-xl font-bold text-red-400 text-center my-5">  Get a {plan.name} badge!</p>
+<div className="lg:ms-auto ms-20 flex items-center w-1/2  lg:w-1/2 ">
 
+<p className="text-2xl font-bold text-gray-500 text-end my-5">  Get a {plan.name} badge!</p>
+<img className="   w-[200px] my-10 object-cover" src={badge_img}alt="" />
 
 </div>
       </div>

@@ -2,7 +2,7 @@
 <h1>Meal Nest </h>
 Live website link : "https://meal-nest.web.app/"
 
-About Job Sphere :
+About Meal Nest:
 
 Here are some bullet points about this web site.
 

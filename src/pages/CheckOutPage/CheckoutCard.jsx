@@ -6,7 +6,7 @@ const CheckoutCard = ({ plan }) => {
       <div className="card w-full bg-transparent text-primary-content">
         <div className="card-body text-black">
           <h2 className="card-title">{plan.name}</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <p></p>
           <div className="card-actions justify-end"></div>
         </div>
       </div>
