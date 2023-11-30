@@ -1,7 +1,7 @@
 import React from "react";
 import useMeals from "../../hooks/useMeals";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -11,7 +11,14 @@ const Allmeals = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
     const axiosPublic = useAxiosPublic();
+    const navigate =useNavigate();
 
+    const handleViewMeals=(id)=>{
+
+
+ 
+      navigate(`/mealdetails/${id}`)
+    }
     const {data: meals = [], isPending: loading, refetch} = useQuery({
       queryKey: ['meals',currentPage,itemsPerPage],
 
@@ -143,7 +150,11 @@ console.log("data count: ",count?.count)
                       {" "}
                       Delete{" "}
                     </button>
-                    <button className="btn btn-xs btn-error ms-1 text-white">
+                    <button onClick={()=>{
+handleViewMeals(meal._id)
+
+
+                    }} className="btn btn-xs btn-success ms-1 text-white">
                       {" "}
                       view{" "}
                     </button>

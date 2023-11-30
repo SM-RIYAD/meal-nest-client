@@ -40,7 +40,7 @@ const Myreviews = () => {
   } = useQuery({
     queryKey: ["reviews",user?.email,currentPage,itemsPerPage],
     queryFn: async () => {
-      const res = await axiosPublic.get( `/reviews?email=${user?.email}&page=${currentPage}&size=${itemsPerPage}`);
+      const res = await axiosSecure.get( `/reviews?email=${user?.email}&page=${currentPage}&size=${itemsPerPage}`);
       setShowReviews(res.data);
       return res.data;
     },

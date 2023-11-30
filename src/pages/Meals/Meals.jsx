@@ -5,6 +5,7 @@ import MealCard from '../Home/MealCard';
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import MealsHorizontalCard from './MealsHorizontalCard';
 // import useAxiosPublic from "./useAxiosPublic";
 
 const Meals = () => {
@@ -253,9 +254,9 @@ useEffect(() => {
 >
   
    <div className="grid mt-10 gap-5 p-5  lg:p-0  grid-cols-1 lg:grid-cols-2">
-          {showmeals.map((meal, idx) => (
+          {showmeals.map((meal) => (
            
-            <MealCard meal={meal} key={meal._id} />
+            <MealsHorizontalCard meal={meal} key={meal._id} />
           ))}
 </div>
 </InfiniteScroll>

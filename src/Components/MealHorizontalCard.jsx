@@ -5,8 +5,6 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-
 import useAxiosPublic from "../hooks/useAxiosPublic";
 const MealHorizontalCard = ({ meal ,refetch}) => {
 const axiosPublic= useAxiosPublic();
@@ -123,14 +121,14 @@ const handleLikeButton=()=>{
 
   return (
     <div><ToastContainer />
-      <div className="card card-side bg-base-100 shadow-xl flex lg:flex-row flex-col ">
+      <div className="card card-side lg:h-56 bg-base-100 shadow-xl flex lg:flex-row flex-col ">
         <figure className="lg:w-1/2 h-56 lg:p-0 p-2  ">
           <img className="h-56 object-cover" src={meal.mealImage} alt="Movie" />
         </figure>
         <div className="card-body lg:w-1/2">
           <h2 className="card-title">{meal.mealTitle}</h2>
           <Rating style={{ maxWidth: 120 }} value={meal.rating} readOnly />
-          <p>{meal.ingredients}</p>
+          <p className="font-bold text-xl">{meal.price} $</p>
           <div className="card-actions justify-end">
             <button    onClick={handleLikeButton}
             

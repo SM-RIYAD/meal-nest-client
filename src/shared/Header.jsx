@@ -113,9 +113,7 @@ const Header = () => {
                 <li>
                     <btn
                   onClick={handleLogout}
-                  className={`border-0 ${
-                    pathname === "/" ? "" : "hidden"
-                  }  btn btn-error btn-outline`}
+                  className={`border-0  btn btn-error btn-outline`}
                 >
                   Logout
                 </btn>
@@ -127,7 +125,7 @@ const Header = () => {
               className={`${pathname === "/login" ? "active-link" : ""}`}
               to="/login"
             >
-              <p className="border-0  font-bold">Log in</p>
+              <p className="border-0  font-bold">Join Us</p>
             </Link>
           )
           // <div>JoinUS</div>

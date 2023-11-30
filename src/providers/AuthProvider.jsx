@@ -66,7 +66,7 @@ return  signInWithPopup(auth,provider)
             setLoading(false);
               // if user exists then issue a token
               if (currentUser) {
-                axios.post('https://job-sphere-server.vercel.app/jwt', loggedUser,{
+                axios.post('http://localhost:5000/jwt', loggedUser,{
                     withCredentials: true
                 }  )
                     .then(res => {
@@ -74,7 +74,7 @@ return  signInWithPopup(auth,provider)
                     })
             }
             else {
-                axios.post('https://job-sphere-server.vercel.app/logout', loggedUser, {
+                axios.post('http://localhost:5000/logout', loggedUser, {
                     withCredentials: true
                 })
                     .then(res => {

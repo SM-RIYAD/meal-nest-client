@@ -1,14 +1,25 @@
 import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
 
 
 
 const Dashboard = () => {
     // const [cart] = useCart();
-
+    const navigate = useNavigate();
     // TODO: get isAdmin value from the database
     const [isAdmin] = useAdmin();
+    const {logOut}=useAuth();
+    const handleLogout = () => {
+        logOut()
+          .then((result) => {
+            console.log(result.user);
+            navigate('/');
+          })
+          .catch((err) => console.log(err));
+      };
+    
     // const isAdmin=false;
  console.log("is admin or not",isAdmin)
     return (
@@ -19,38 +30,38 @@ const Dashboard = () => {
                     {
                         isAdmin ? <>
                             <li>
-                                <Link to="/dashboard/adminprofile">
-                                    <FaHome></FaHome>
+                                <Link to="/dashboard">
+                              
                                     Admin Profile</Link>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/manageusers">
-                                    <FaUtensils></FaUtensils>
+                            
                                     Manage Users</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/addmeal">
-                                    <FaList></FaList>
+                                
                                     Add Meal</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/allmeals">
-                                    <FaBook></FaBook>
+                                 
                                     All Meals</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/AllReviews">
-                                    <FaUsers></FaUsers>
+                                 
                                     All Reviews </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/servemeal">
-                                    <FaUsers></FaUsers>
+                               
                                     Serve Meals </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/upcomingmeals">
-                                    <FaUsers></FaUsers>
+                                 
                                     Upcoming Meals </NavLink>
                             </li>
                         </>
@@ -58,12 +69,12 @@ const Dashboard = () => {
                             <>
                                 <li>
                                     <NavLink to="/dashboard/userProfile">
-                                        <FaHome></FaHome>
+                             
                                         My Profile</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/requestedmeals">
-                                        <FaCalendar></FaCalendar>
+                              
                                         Requested Meals</NavLink>
                                 </li>
                                 {/* <li>
@@ -73,7 +84,7 @@ const Dashboard = () => {
                                 </li> */}
                                 <li>
                                     <NavLink to="/dashboard/myreviews">
-                                        <FaAd></FaAd>
+                                     
                                         My Reviews</NavLink>
                                 </li>
                              
@@ -87,15 +98,19 @@ const Dashboard = () => {
                             Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/order/salad">
-                            <FaSearch></FaSearch>
-                            Menu</NavLink>
+                        <NavLink to="/meals">
+                    
+                            Meal Display</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/order/contact">
-                            <FaEnvelope></FaEnvelope>
-                            Contact</NavLink>
-                    </li>
+                    <btn
+                  onClick={handleLogout}
+                  className={`border-0 text-start btn btn-sm btn-error `}
+                >
+                  Logout
+                </btn>
+                </li>
+              
                 </ul>
             </div>
             {/* dashboard content */}

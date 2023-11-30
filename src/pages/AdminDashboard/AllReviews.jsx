@@ -34,7 +34,7 @@ const navigate= useNavigate();
     } = useQuery({
       queryKey: ["reviews",currentPage,itemsPerPage],
       queryFn: async () => {
-        const res = await axiosPublic.get( `/reviews?page=${currentPage}&size=${itemsPerPage}`);
+        const res = await axiosSecure.get( `/reviews?page=${currentPage}&size=${itemsPerPage}`);
         setShowReviews(res.data)
         return res.data;
       },
