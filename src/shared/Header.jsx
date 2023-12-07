@@ -94,7 +94,7 @@ const Header = () => {
               className={`${pathname === "/login" ? "active-link" : ""}`}
               to="/login"
             >
-              <p className="border-0  font-bold">Join Us</p>
+              <p className="border-0  font-bold">Log in</p>
             </Link>
           )
    

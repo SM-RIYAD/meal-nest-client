@@ -1,4 +1,6 @@
 import React from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { useLoaderData, useParams } from "react-router-dom";
 import SharedBanner from "../../shared/SharedComponents/SharedBanner";
 import { Rating } from "@smastrom/react-rating";
@@ -18,6 +20,8 @@ import useCheckUserPackage from "../../hooks/useCheckUserPackage";
 
 
 const MealDetails = () => {
+  AOS.init();
+  window.scrollTo(0, 0);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 //   const meal = useLoaderData();
@@ -245,27 +249,59 @@ console.log("user")
   return (
     <div>
       <SharedBanner title={meal?.mealTitle} /> <ToastContainer />
-      <div className="flex gap-5 mt-10 lg:flex-row flex-col mx-auto max-w-6xl">
-        <div className="lg:w-1/2 h-[400px]">
-          <img className=" h-full  object-cover" src={meal.mealImage} alt="" />
+
+
+      {isMealLoading ? 
+        <div className="w-full flex justify-center">
+          <span className="loading loading-spinner loading-xl"></span>
         </div>
-        <div className="lg:w-1/2 space-y-3">
-          <p className="text-2xl font-bold">{meal.mealTitle}</p>
-          <p className="text-base text-gray-400">
+      :
+      <div className="flex gap-5 mt-10 lg:flex-row flex-col mx-auto max-w-6xl">
+        <div data-aos-delay="2100"
+                  data-aos-duration="2000"
+                  data-aos-easing="ease-in-out"
+                  data-aos="zoom-in"  className="lg:w-1/2 h-[450px]">
+          <img className=" h-full w-full object-cover" src={meal.mealImage} alt="" />
+        </div>
+        <div   className="lg:w-1/2 space-y-3">
+          <p data-aos-delay="100"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out"
+                  data-aos="fade-left"  className="text-2xl font-bold">{meal.mealTitle}</p>
+          <p data-aos-delay="1100"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out"
+                  data-aos="fade-left"  className="text-base text-gray-400">
             <i>
               {" "}
               by {meal.adminName} at {meal.time}{" "}
             </i>{" "}
           </p>
-          <Rating style={{ maxWidth: 120 }} value={meal.rating} readOnly />
-          <p>{meal.description}</p>
+          <div  data-aos-delay="2100"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out"
+                  data-aos="fade-left"  >
+
+          <Rating  style={{ maxWidth: 120 }} value={meal.rating} readOnly />
+          </div>
+
+          <p data-aos-delay="2100"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out"
+                  data-aos="zoom-in-up"  >{meal.description}</p>
           <div className="flex items-center">
             {/* <p className='font-bold text-xl text-gray-300 pe-2'>Ingridiants:</p> */}
           
 
-            <p className="text-gray-400 font-bold "> <i>Ingredients: {meal.ingredients}</i> </p>
+            <p data-aos-delay="3100"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out"
+                  data-aos="fade-right" className="text-gray-400 font-bold "> <i>Ingredients: {meal.ingredients}</i> </p>
           </div>
-          <div className="flex gap-5">
+          <div  data-aos-delay="3100"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out"
+                  data-aos="fade-right"  className="flex gap-5">
             <button onClick={handleRequestMeal} className="btn btn-primary bg-red-500 text-white border-none ">
               Request meal
             </button>
@@ -278,7 +314,7 @@ console.log("user")
             <p className="text-4xl text-red-400">({meal.likes})</p>
           </div>
         </div>
-      </div>
+      </div>}
       <Reviews meal={meal}></Reviews>
     </div>
   );

@@ -24,5 +24,7 @@ Here are some bullet points about this web site.
 
 8. after 10 likes the meals from upcoming meals section can be posted to all meals
 
+9. Stripe payment gateway is used!
+
 and so on...!
 

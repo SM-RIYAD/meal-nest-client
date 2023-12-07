@@ -132,10 +132,10 @@ console.log("data count: ",count?.count)
                   <td>{meal.reviews}</td>
                   <td>{meal.adminName}</td>
                   <td>{meal.adminEmail}</td>
-                  <td>
+                  <td className="flex">
                     <Link to={`/updatemeal/${meal._id}`}>
                       {" "}
-                      <button className="btn btn-xs ms-1 btn-error text-white">
+                      <button className="btn btn-warning btn-xs ms-1  text-black">
                         {" "}
                         Update{" "}
                       </button>

@@ -1,6 +1,8 @@
 import React from "react";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const SharedBanner = ({ title }) => {
+  AOS.init();
   return (
     <div>
       <div className=" w-full relative  ">
@@ -15,7 +17,10 @@ const SharedBanner = ({ title }) => {
           <div className="hero-content text-center text-neutral-content relative z-10">
             <div className="mt-20">
               <div className="flex flex-col justify-center items-center">
-                <h1 className="mb-5 lg:text-5xl text-4xl  text-white font-extrabold">
+                <h1  data-aos-delay="100"
+                  data-aos-duration="2000"
+                  data-aos-easing="ease-in-out"
+                  data-aos="fade-left" className="mb-5 lg:text-5xl text-4xl  text-white font-extrabold">
                 {title}
                 </h1>
                 

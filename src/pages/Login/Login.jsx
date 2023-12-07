@@ -93,7 +93,7 @@ const { signIn,googleSignIn,theme }=useContext(AuthContext);
             role:'normal'
         }
         console.log("this is user info in login",userInfo);
-        axios.post('http://localhost:5000/users', userInfo)
+        axios.post('https://meal-nest-server-orpin.vercel.app/users', userInfo)
         .then(res =>{
             console.log(res.data);
             // navigate('/');

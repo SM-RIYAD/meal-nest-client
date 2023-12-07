@@ -10,6 +10,7 @@ import {
   FaUsers,
   FaUtensils,
 } from "react-icons/fa";
+import { CiLogout } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
@@ -19,6 +20,7 @@ import { MdManageHistory } from "react-icons/md";
 import { IoMdAddCircle } from "react-icons/io";
 import { PiBowlFood } from "react-icons/pi";
 import { MdOutlineReviews } from "react-icons/md";
+import "./Root.css"
 const Dashboard = () => {
   // const [cart] = useCart();
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ const Dashboard = () => {
   // const isAdmin=false;
   console.log("is admin or not", isAdmin);
   return (
-    <div className="flex  mx-auto max-w-6xl">
+    <div className="flex font-class  mx-auto max-w-6xl">
       {/* dashboard side bar */}
       <div className="lg:w-64 min-h-screen bg-gradient-to-r from-gray-600 to-red-500  ">
         <ul className="menu space-y-2 p-4 text-white">
@@ -125,12 +127,14 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <btn
+            {/* <btn
               onClick={handleLogout}
               className={`border-0 text-start btn btn-sm btn-error `}
-            >
-              Logout
-            </btn>
+            ><CiLogout />
+              
+            </btn> */}
+          <p  onClick={handleLogout} ><CiLogout /> Logout
+             </p>  
           </li>
 
           <li>

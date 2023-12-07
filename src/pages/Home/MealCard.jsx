@@ -1,10 +1,15 @@
 import React from "react";
 import { Rating } from "@smastrom/react-rating";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const MealCard = ({ meal }) => {
+  AOS.init();
   return (
-    <div className="">
+    <div   data-aos-delay="50"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out" data-aos="zoom-in-up" className="">
       <div className="card card-compact lg:w-96 w-auto bg-base-100 shadow-xl">
         <figure className=" h-56 object-cover lg:w-96 w-auto p-2">
           <img
