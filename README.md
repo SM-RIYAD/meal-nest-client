@@ -1,30 +1,28 @@
 
-<h1>Meal Nest </h>
+<h2>Meal Nest </h2>
 Live website link : "https://meal-nest.web.app/"
 
-About Meal Nest:
-
-Here are some bullet points about this web site.
+<h3> About Meal Nest: </h3>
 
 1. This is a web site where admin can add , update,delete meals.
 
-3. Role based log in and register.
+2. Role based log in and register.
 
-2. User can order meals.
+3. User can order meals.
 
-3. user can give like to meals
+4. user can give like to meals
 
-4. user can give review to meals
+5. user can give review to meals
 
-5. separate admin and user dashboards'
+6. separate admin and user dashboards'
 
-6. protected route feature is implemented
+7. protected route feature is implemented
 
-7. secured by jwt token.
+8. secured by jwt token.
 
-8. after 10 likes the meals from upcoming meals section can be posted to all meals
+9. after 10 likes the meals from upcoming meals section can be posted to all meals
 
-9. Stripe payment gateway is used!
+10. Stripe payment gateway is used!
 
 and so on...!
-
+<h3> Technologies Used</h3>Reactjs,Tailwind,daisiui,html,css. For backend, jwt,nodejs,express js,mongodb.
