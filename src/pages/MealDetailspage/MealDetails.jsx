@@ -256,7 +256,7 @@ console.log("user")
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       :
-      <div className="flex gap-5 mt-10 lg:flex-row flex-col mx-auto max-w-6xl">
+      <div className="flex gap-5 mt-10 lg:flex-row flex-col mx-auto p-4 max-w-6xl">
         <div data-aos-delay="2100"
                   data-aos-duration="2000"
                   data-aos-easing="ease-in-out"

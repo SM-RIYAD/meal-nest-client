@@ -104,7 +104,7 @@ const Reviews = ({ meal }) => {
   };
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="lg:mx-auto p-4 max-w-6xl">
       <h1 className="text-xl text-red-400 my-5 ">
         {" "}
         <u>Reviews:</u>
@@ -124,7 +124,7 @@ const Reviews = ({ meal }) => {
         />
         <button
           onClick={handleAddReview}
-          className="btn mt-5  btn-primary rounded-none bg-red-500  text-white hover:border-none  "
+          className="btn mt-5  btn-primary border-none rounded-none bg-red-500  text-white hover:border-none  "
         >
           Submit
         </button>

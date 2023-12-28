@@ -171,10 +171,10 @@ useEffect(() => {
 
             
              <SharedBanner title={"Allmeals"}></SharedBanner>
-            <p>  this is meal page {meals.length}</p>
+            {/* <p>  this is meal page {meals.length}</p> */}
 
 <div className='mx-auto max-w-6xl'>
-<div className="flex lg:flex-row w-full my-5 justify-center flex-col">
+<div className="flex lg:flex-row w-full my-5 justify-center p-4 flex-col">
                   <input
                     type="text"
                     placeholder="Search a meal"
@@ -187,7 +187,7 @@ useEffect(() => {
                     Search
                   </button>
                 </div>
-<div className='flex justify-between'>
+<div className='flex lg:flex-row flex-col p-4 space-y-5 justify-between'>
 <div>
 <input
         type="range"
@@ -219,7 +219,7 @@ useEffect(() => {
 <select
             value={selectedOption}
             onChange={handleSelectChange}
-            className="select md:ms-5 md:max-w-[300px] max-w-[300px]  select-bordered w-full ms-2"
+            className="select md:ms-5 md:max-w-[300px] lg:max-w-[300px]  select-bordered w-full  lg:ms-2"
           >
             <option value="All meals">Select a Category</option>
             <option value="Breakfast">Breakfast</option>
