@@ -103,6 +103,7 @@ const { signIn,googleSignIn,theme }=useContext(AuthContext);
         navigate(location?.state ? location.state : "/", {
           state: { from: location.pathname },
         });
+     
       })
       .catch((error) => {
         console.error("this is error in login ", error);

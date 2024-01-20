@@ -6,7 +6,7 @@ import "./Header.css";
 import useAdmin from "../hooks/useAdmin";
 import Swal from "sweetalert2";
 const Header = () => {
-  const [isAdmin] = useAdmin();
+  const [isAdmin,isAdminLoading] = useAdmin();
   const { user, logOut } = useContext(AuthContext);
   const { pathname } = useLocation();
   console.log("this is from header", pathname);
@@ -22,12 +22,11 @@ const Header = () => {
   };
   const handleAdminCredentials = () => {
     Swal.fire({
-      icon: "warning",
+      icon: "info",
       title: "Admin Credentials",
       html: `
       <div >
     <p>Admin Email: syed@gmail.com </p> <p className='pt-5'>Admin Password: syeD123#</p>
-
       </div>
     `, showConfirmButton: false,
       showCloseButton: true,
@@ -87,6 +86,19 @@ const Header = () => {
       <li className={`${user ? "pt-5" : "pt-5"} `}>
         <button className="admin-text" onClick={handleAdminCredentials}> Admin</button>
       </li>
+
+      {
+ <li className={`${user ? "pt-5" : "pt-5"} `}>
+   <Link
+     to={`${
+      !isAdminLoading &&  isAdmin  ? "/dashboard/adminProfile" : "/dashboard/userProfile"
+     }`}
+   >
+     <a>Dashboard</a>
+   </Link>
+ </li>
+      }
+   
     </>
   );
 
@@ -104,7 +116,7 @@ const Header = () => {
               <li>
                 <a>{user?.displayName}</a>
               </li>
-              <li className="hover:text-white">
+              {/* <li className="hover:text-white">
                 <Link
                   to={`${
                     isAdmin === true ? "/dashboard" : "/dashboard/userProfile"
@@ -112,7 +124,7 @@ const Header = () => {
                 >
                   <a>Dashboard</a>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <btn
                   onClick={handleLogout}

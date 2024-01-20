@@ -7,6 +7,8 @@ import Membership from './Membership/Membership';
 import FAQ from './FAQ/FAQ';
 
 import Subscribe from './Subscribe/Subscribe';
+import Chefs from './Chefs/Chefs';
+import YourLiking from './yourLiking/YourLiking';
 
 const Home = () => {
     return (
@@ -17,10 +19,18 @@ const Home = () => {
         <PageTitle title={"Home" }/>
           
             <Mealtab/>
+          
+            <YourLiking></YourLiking>
+            <Membership></Membership>
             <Subscribe></Subscribe>
-<Membership></Membership>
+            <Chefs></Chefs>
 
-<FAQ></FAQ>
+            <FAQ></FAQ>
+
+
+
+
+
 
         </div>
     );

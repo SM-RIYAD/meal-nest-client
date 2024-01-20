@@ -246,7 +246,7 @@ useEffect(() => {
   loader={<h4>Loading...</h4>}
   endMessage={
     <p style={{ textAlign: 'center' }}>
-      <b>Yay! You have seen it all</b>
+      {/* <b>Yay! You have seen it all</b> */}
     </p>
   }
   // below props only if you need pull down functionality

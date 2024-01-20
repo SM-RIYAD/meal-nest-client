@@ -6,7 +6,7 @@ const Membership = () => {
   AOS.init();
   const packages = ["SILVER", "GOLD", "PLATINUM"];
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="mx-auto max-w-6xl my-20">
    <p className="text-2xl text-center  my-10 text-red-400">GET MEMBERSHIP</p>
       <div className="grid gap-5  lg:grid-cols-3 grid-cols-1">
 

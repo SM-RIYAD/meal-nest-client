@@ -89,7 +89,7 @@ const router = createBrowserRouter([
 //   path: "",
 //   element: <AdminProfile/>
 
-// },
+// }
 ,
 {
   path: "userProfile",
@@ -106,8 +106,8 @@ const router = createBrowserRouter([
 ,
 
       {
-        path: "",
-        element:<AdminRoute><AdminProfile /></AdminRoute> ,
+        path: "adminProfile",
+        element:<AdminProfile /> ,
       },
 
       {
